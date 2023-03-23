@@ -2,13 +2,17 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-image: url('../img/bg/PNG/game_background_4/layers/battleground.png');
-    background-size: contain;
+    background-image: url('../img/bg/PNG/game_background_4/game_background_4.png');
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 25px;
 }
 
 canvas {
     background-color: black;
+}
+
+.logo {
+    width: 200px;
 }

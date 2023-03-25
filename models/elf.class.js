@@ -1,4 +1,5 @@
 class Elf extends MovableObject {
+    y = 130;
 
     IMAGES_IDLE = [
         'img/elf/PNG/3/Elf_03__IDLE_000.png',
@@ -12,6 +13,7 @@ class Elf extends MovableObject {
         'img/elf/PNG/3/Elf_03__IDLE_008.png',
         'img/elf/PNG/3/Elf_03__IDLE_009.png'
     ];
+    world;
 
 
     constructor() {

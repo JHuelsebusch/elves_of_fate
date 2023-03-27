@@ -28,9 +28,12 @@ class Orc extends MovableObject {
     }
 
     animate() {
-        this.moveLeft();
         setInterval(() => {
-            this.obkectAnimation(this.IMAGES_WALK);
+            this.moveLeft();
+        }, 1000 / 60);
+
+        setInterval(() => {
+            this.objectAnimation(this.IMAGES_WALK);
         }, 100)
     }
 }

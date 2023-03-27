@@ -6,15 +6,34 @@ class World {
         new Orc(),
     ];
     backgroundObjects = [
-        new BackgroundObject('./img/bg/PNG/game_background_4/layers/battleground.png', 0, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_4/layers/back_land.png', 0, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_4/layers/back_decor.png', 0, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_4/layers/front_decor.png', 0, -240),
-        new BackgroundObject('./img/bg/PNG/game_background_4/layers/ground_decor.png', 0, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/battleground.png', -886.33333, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_land.png', -886.33333, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_decor.png', -886.33333, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/ground_decor.png', -886.33333, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/front_decor.png', -886.33333, -240),
+
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/battleground.png', 0, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_land.png', 0, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_decor.png', 0, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/ground_decor.png', 0, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/front_decor.png', 0, -240),
+
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/battleground.png', 886.33333, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_land.png', 886.33333, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_decor.png', 886.33333, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/ground_decor.png', 886.33333, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/front_decor.png', 886.33333, -240),
+
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/battleground.png', 886.33333 * 2, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_land.png', 886.33333 * 2, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_decor.png', 886.33333 * 2, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/ground_decor.png', 886.33333 * 2, 0),
+        new BackgroundObject('./img/bg/PNG/game_background_5/layers/front_decor.png', 886.33333 * 2, -240),
     ];
     ctx;
     canvas;
     keyboard;
+    camera_x = 0;
 
 
     constructor(canvas, keyboard) {
@@ -31,10 +50,13 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        this.ctx.translate(this.camera_x, 0);
+
         this.addObjectsToMap(this.backgroundObjects);
         this.addToMap(this.elf);
         this.addObjectsToMap(this.orcs);
 
+        this.ctx.translate(-this.camera_x, 0);
 
         let self = this;
         requestAnimationFrame(function() { self.draw(); });

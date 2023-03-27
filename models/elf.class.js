@@ -62,6 +62,7 @@ class Elf extends MovableObject {
                 this.img = this.imgCache[path];
                 this.currentImage++
             }
+            this.world.camera_x = -this.x
 
         }, 100)
 

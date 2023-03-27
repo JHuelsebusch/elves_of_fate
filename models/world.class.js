@@ -1,35 +1,6 @@
 class World {
     elf = new Elf()
-    orcs = [
-        new Orc(),
-        new Orc(),
-        new Orc(),
-    ];
-    backgroundObjects = [
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/battleground.png', -886.33333, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_land.png', -886.33333, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_decor.png', -886.33333, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/ground_decor.png', -886.33333, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/front_decor.png', -886.33333, -240),
-
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/battleground.png', 0, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_land.png', 0, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_decor.png', 0, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/ground_decor.png', 0, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/front_decor.png', 0, -240),
-
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/battleground.png', 886.33333, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_land.png', 886.33333, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_decor.png', 886.33333, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/ground_decor.png', 886.33333, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/front_decor.png', 886.33333, -240),
-
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/battleground.png', 886.33333 * 2, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_land.png', 886.33333 * 2, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_decor.png', 886.33333 * 2, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/ground_decor.png', 886.33333 * 2, 0),
-        new BackgroundObject('./img/bg/PNG/game_background_5/layers/front_decor.png', 886.33333 * 2, -240),
-    ];
+    level = level1;
     ctx;
     canvas;
     keyboard;
@@ -52,9 +23,9 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.ctx.translate(this.camera_x, 0);
 
-        this.addObjectsToMap(this.backgroundObjects);
+        this.addObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.elf);
-        this.addObjectsToMap(this.orcs);
+        this.addObjectsToMap(this.level.orcs);
 
         this.ctx.translate(-this.camera_x, 0);
 

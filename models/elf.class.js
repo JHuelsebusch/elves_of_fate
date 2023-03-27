@@ -26,7 +26,8 @@ class Elf extends MovableObject {
         'img/elf/PNG/3/Elf_03__RUN_007.png',
         'img/elf/PNG/3/Elf_03__RUN_008.png',
         'img/elf/PNG/3/Elf_03__RUN_009.png',
-    ]
+    ];
+    walk_sound = new Audio('audio/running.mp3');
     world;
 
 
@@ -40,27 +41,23 @@ class Elf extends MovableObject {
 
     animate() {
         setInterval(() => {
-            let i = this.currentImage % this.IMAGES_IDLE.length;
-            let path = this.IMAGES_IDLE[i];
-            this.img = this.imgCache[path];
-            this.currentImage++
-
-                if (this.world.keyboard.RIGHT) {
-                    this.otherDirection = false;
-                    this.x += this.speed;
-                    let i = this.currentImage % this.IMAGES_WALK.length;
-                    let path = this.IMAGES_WALK[i];
-                    this.img = this.imgCache[path];
-                    this.currentImage++
-                }
-
-            if (this.world.keyboard.LEFT) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                this.otherDirection = false;
+                this.x += this.speed;
+            }
+            if (this.world.keyboard.LEFT && this.x > this.world.level.level_begin_x) {
                 this.otherDirection = true;
                 this.x -= this.speed;
-                let i = this.currentImage % this.IMAGES_WALK.length;
-                let path = this.IMAGES_WALK[i];
-                this.img = this.imgCache[path];
-                this.currentImage++
+            }
+        }, 100)
+        setInterval(() => {
+            this.obkectAnimation(this.IMAGES_IDLE);
+
+            this.walk_sound.pause();
+
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                this.walk_sound.play();
+                this.obkectAnimation(this.IMAGES_WALK);
             }
             this.world.camera_x = -this.x
 

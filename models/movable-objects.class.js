@@ -32,5 +32,11 @@ class MovableObject {
         }, 1000 / 60);
     }
 
+    obkectAnimation(images) {
+        let i = this.currentImage % images.length;
+        let path = images[i];
+        this.img = this.imgCache[path];
+        this.currentImage++
+    }
 
 }

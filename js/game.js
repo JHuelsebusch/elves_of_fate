@@ -4,7 +4,7 @@ let keyboard = new Keyboard();
 
 function init() {
     canvas = document.getElementById('canvas');
-    world = new World(canvas);
+    world = new World(canvas, keyboard);
 
 
 
@@ -22,7 +22,7 @@ window.addEventListener("keydown", (e) => {
     if (e.keyCode == 40) {
         keyboard.DOWN = true;
     }
-    if (e.keyCode == 31) {
+    if (e.keyCode == 32) {
         keyboard.SPACE = true;
     }
 })
@@ -39,7 +39,7 @@ window.addEventListener("keyup", (e) => {
     if (e.keyCode == 40) {
         keyboard.DOWN = false;
     }
-    if (e.keyCode == 31) {
+    if (e.keyCode == 32) {
         keyboard.SPACE = false;
     }
 })

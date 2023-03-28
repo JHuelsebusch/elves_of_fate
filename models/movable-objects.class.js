@@ -48,6 +48,7 @@ class MovableObject {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
+
             ctx.rect(this.x + this.frameX, this.y + this.frameY, this.width + this.frameW, this.height + this.frameH);
             ctx.stroke();
         }
@@ -58,7 +59,8 @@ class MovableObject {
             ((this.y + this.frameY) + (this.height + this.frameH)) >= (obj.y + obj.frameY) &&
             (this.x + this.frameX) <= (obj.x + obj.frameX) &&
             (this.y + this.frameY) <= ((obj.y + obj.frameY) + (obj.height + obj.frameH))
-            // ((this.x + this.frameX) + (this.width + this.frameW)) >= (obj.x + obj.frameX) && (this.x + this.frameX) <= ((obj.x + obj.frameX) + (obj.width + obj.frameW)) &&
+            // ((this.x + this.frameX) + (this.width + this.frameW)) >= (obj.x + obj.frameX) &&
+            // (this.x + this.frameX) <= ((obj.x + obj.frameX) + (obj.width + obj.frameW)) &&
             // ((this.y + this.frameY) + this.offsetY + (this.height + this.frameH)) >= (obj.y + obj.frameY) &&
             // ((this.y + this.frameY) + this.offsetY) <= ((obj.y + obj.frameY) + (obj.height + obj.frameH))
             // && obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.;

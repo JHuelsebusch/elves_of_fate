@@ -2,6 +2,10 @@ class Elf extends MovableObject {
     y = 30;
     speed = 20;
     otherDirection = false;
+    frameX = 210;
+    frameY = 80;
+    frameW = -420;
+    frameH = -130;
 
     IMAGES_IDLE = [
         'img/elf/PNG/3/Elf_03__IDLE_000.png',
@@ -68,6 +72,7 @@ class Elf extends MovableObject {
         setInterval(() => {
             this.walk_sound.pause();
             this.objectAnimation(this.IMAGES_IDLE);
+
             if (this.isAboveGround()) {
                 this.objectAnimation(this.IMAGES_JUMP)
             } else {

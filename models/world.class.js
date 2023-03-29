@@ -5,6 +5,7 @@ class World {
     canvas;
     keyboard;
     camera_x = 0;
+    statusBar = new StatusBar();
 
 
     constructor(canvas, keyboard) {
@@ -24,7 +25,9 @@ class World {
         setInterval(() => {
             this.level.orcs.forEach((orc) => {
                 if (this.elf.isColliding(orc)) {
-                    console.log(orc);
+                    this.elf.hit(orc);
+                    this.statusBar.setPercentage(this.elf.energy);
+                    console.log(this.elf.energy)
                 }
             })
         }, 100);
@@ -32,13 +35,14 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-        this.ctx.translate(this.camera_x, 0);
+        this.ctx.translate(this.camera_x, 0); // Forwards
 
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.elf);
         this.addObjectsToMap(this.level.orcs);
 
-        this.ctx.translate(-this.camera_x, 0);
+        this.ctx.translate(-this.camera_x, 0); // Back
+        this.addToMap(this.statusBar);
 
         let self = this;
         requestAnimationFrame(function() { self.draw(); });

@@ -6,6 +6,7 @@ class Elf extends MovableObject {
     frameY = 80;
     frameW = -420;
     frameH = -130;
+    energy = 100;
 
     IMAGES_IDLE = [
         'img/elf/PNG/3/Elf_03__IDLE_000.png',
@@ -44,6 +45,42 @@ class Elf extends MovableObject {
         'img/elf/PNG/3/Elf_03__JUMP_008.png',
         'img/elf/PNG/3/Elf_03__JUMP_009.png',
     ];
+    IMAGES_HURT = [
+        'img/elf/PNG/3/Elf_03__HURT_000.png',
+        'img/elf/PNG/3/Elf_03__HURT_001.png',
+        'img/elf/PNG/3/Elf_03__HURT_002.png',
+        'img/elf/PNG/3/Elf_03__HURT_003.png',
+        'img/elf/PNG/3/Elf_03__HURT_004.png',
+        'img/elf/PNG/3/Elf_03__HURT_005.png',
+        'img/elf/PNG/3/Elf_03__HURT_006.png',
+        'img/elf/PNG/3/Elf_03__HURT_007.png',
+        'img/elf/PNG/3/Elf_03__HURT_008.png',
+        'img/elf/PNG/3/Elf_03__HURT_009.png',
+    ];
+    IMAGES_DIE = [
+        'img/elf/PNG/3/Elf_03__DIE_000.png',
+        'img/elf/PNG/3/Elf_03__DIE_001.png',
+        'img/elf/PNG/3/Elf_03__DIE_002.png',
+        'img/elf/PNG/3/Elf_03__DIE_003.png',
+        'img/elf/PNG/3/Elf_03__DIE_004.png',
+        'img/elf/PNG/3/Elf_03__DIE_005.png',
+        'img/elf/PNG/3/Elf_03__DIE_006.png',
+        'img/elf/PNG/3/Elf_03__DIE_007.png',
+        'img/elf/PNG/3/Elf_03__DIE_008.png',
+        'img/elf/PNG/3/Elf_03__DIE_009.png',
+    ];
+    IMAGES_ATTACK = [
+        'img/elf/PNG/3/Elf_03__ATTACK_000.png',
+        'img/elf/PNG/3/Elf_03__ATTACK_001.png',
+        'img/elf/PNG/3/Elf_03__ATTACK_002.png',
+        'img/elf/PNG/3/Elf_03__ATTACK_003.png',
+        'img/elf/PNG/3/Elf_03__ATTACK_004.png',
+        'img/elf/PNG/3/Elf_03__ATTACK_005.png',
+        'img/elf/PNG/3/Elf_03__ATTACK_006.png',
+        'img/elf/PNG/3/Elf_03__ATTACK_007.png',
+        'img/elf/PNG/3/Elf_03__ATTACK_008.png',
+        'img/elf/PNG/3/Elf_03__ATTACK_009.png',
+    ];
     world;
 
 
@@ -52,6 +89,9 @@ class Elf extends MovableObject {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_JUMP);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DIE);
+        this.loadImages(this.IMAGES_ATTACK);
         this.applyGravity();
         this.animate();
     }
@@ -73,12 +113,19 @@ class Elf extends MovableObject {
             this.walk_sound.pause();
             this.objectAnimation(this.IMAGES_IDLE);
 
-            if (this.isAboveGround()) {
+            if (this.isDead()) {
+                this.objectAnimation(this.IMAGES_DIE);
+            } else if (this.isHurt()) {
+                this.objectAnimation(this.IMAGES_HURT);
+            } else if (this.isAboveGround()) {
                 this.objectAnimation(this.IMAGES_JUMP)
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.walk_sound.play();
                     this.objectAnimation(this.IMAGES_WALK);
+                }
+                if (this.world.keyboard.SPACE) {
+                    this.objectAnimation(this.IMAGES_ATTACK)
                 }
             }
             this.world.camera_x = -this.x

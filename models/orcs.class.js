@@ -6,6 +6,8 @@ class Orc extends MovableObject {
     frameW = -350;
     frameH = -145;
 
+    damage = 2;
+
     IMAGES_WALK = [
         'img/orc/PNG/3_ORK/ORK_03_WALK_000.png',
         'img/orc/PNG/3_ORK/ORK_03_WALK_001.png',

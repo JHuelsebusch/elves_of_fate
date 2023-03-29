@@ -6,6 +6,7 @@ class Orc extends MovableObject {
     frameW = -350;
     frameH = -145;
 
+    energy = 5;
     damage = 2;
 
     IMAGES_WALK = [
@@ -21,26 +22,46 @@ class Orc extends MovableObject {
         'img/orc/PNG/3_ORK/ORK_03_WALK_009.png',
 
     ];
+    IMAGES_DIE = [
+        'img/orc/PNG/3_ORK/ORK_03_DIE_000.png',
+        'img/orc/PNG/3_ORK/ORK_03_DIE_001.png',
+        'img/orc/PNG/3_ORK/ORK_03_DIE_002.png',
+        'img/orc/PNG/3_ORK/ORK_03_DIE_003.png',
+        'img/orc/PNG/3_ORK/ORK_03_DIE_004.png',
+        'img/orc/PNG/3_ORK/ORK_03_DIE_005.png',
+        'img/orc/PNG/3_ORK/ORK_03_DIE_006.png',
+        'img/orc/PNG/3_ORK/ORK_03_DIE_007.png',
+        'img/orc/PNG/3_ORK/ORK_03_DIE_008.png',
+        'img/orc/PNG/3_ORK/ORK_03_DIE_009.png',
+
+    ];
 
     constructor() {
-        super().loadImage('./img/orc/PNG/3_ORK/ORK_03_IDLE_000.png')
+        super().loadImage('./img/orc/PNG/3_ORK/ORK_03_IDLE_000.png');
 
         this.x = 400 + Math.random() * 2000;
         // this.y = 100 + Math.random() * 50;
         this.speed = 0.05 + Math.random() * 0.75;
 
         this.loadImages(this.IMAGES_WALK);
+        this.loadImages(this.IMAGES_DIE);
 
         this.animate();
     }
 
     animate() {
         setInterval(() => {
-            this.moveLeft();
+            if (this.isDead()) {} else {
+                this.moveLeft();
+            }
         }, 1000 / 60);
 
         setInterval(() => {
-            this.objectAnimation(this.IMAGES_WALK);
+            if (this.isDead()) {
+                this.objectAnimation(this.IMAGES_DIE);
+            } else {
+                this.objectAnimation(this.IMAGES_WALK);
+            }
         }, 100)
     }
 }

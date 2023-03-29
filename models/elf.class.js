@@ -6,7 +6,9 @@ class Elf extends MovableObject {
     frameY = 80;
     frameW = -420;
     frameH = -130;
+
     energy = 100;
+    damage = 10;
 
     IMAGES_IDLE = [
         'img/elf/PNG/3/Elf_03__IDLE_000.png',

@@ -29,6 +29,9 @@ class World {
                     this.statusBar.setPercentage(this.elf.energy);
                     console.log(this.elf.energy)
                 }
+                if (orc.isColliding(this.elf)) {
+                    orc.hit(this.elf);
+                }
             })
         }, 100);
     }

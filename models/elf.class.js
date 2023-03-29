@@ -111,12 +111,15 @@ class Elf extends MovableObject {
             }
         }, 100)
 
-        setInterval(() => {
+        const animationInterval = setInterval(() => {
             this.walk_sound.pause();
             this.objectAnimation(this.IMAGES_IDLE);
 
             if (this.isDead()) {
                 this.objectAnimation(this.IMAGES_DIE);
+                setTimeout(() => {
+                    clearInterval(animationInterval);
+                }, 150);
             } else if (this.isHurt()) {
                 this.objectAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {

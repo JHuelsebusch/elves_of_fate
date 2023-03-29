@@ -25,16 +25,17 @@ class DrawableObject {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
     drawFrame(ctx) {
-        if (this instanceof Elf || this instanceof Orc) {
+        if (this instanceof Elf || this instanceof Orc || this instanceof Endboss) {
             ctx.beginPath();
-            ctx.lineWidth = '5';
+            ctx.lineWidth = '1';
             ctx.strokeStyle = 'blue';
-
-            let drawX = this.x + this.frameX;
-            let drawY = this.y + this.frameY;
-            let drawW = this.width + this.frameW;
-            let drawH = this.height + this.frameH;
-            ctx.rect(drawX, drawY, drawW, drawH);
+            let drawX;
+            if (this.otherDirection) {
+                drawX = this.x + this.offset.right;
+            } else {
+                drawX = this.x + this.offset.left;
+            }
+            ctx.rect(drawX, (this.y + this.offset.top), ((this.width - this.offset.right) - this.offset.left), ((this.height - this.offset.top) - this.offset.bottom));
             ctx.stroke();
         }
     }

@@ -1,10 +1,16 @@
 class Orc extends MovableObject {
     otherDirection = true;
 
-    frameX = 200;
-    frameY = 115;
-    frameW = -350;
-    frameH = -145;
+    // frameX = 200;
+    // frameY = 115;
+    // frameW = -350;
+    // frameH = -145;
+    offset = {
+        top: 115,
+        right: 210,
+        bottom: 30,
+        left: 150
+    };
 
     energy = 5;
     damage = 2;

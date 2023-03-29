@@ -6,6 +6,13 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
 
+    offset = {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+    };
+
     applyGravity() {
         setInterval(() => {
             if (this.y < 130 || this.speedY > 0) {
@@ -24,15 +31,21 @@ class MovableObject extends DrawableObject {
 
 
     isColliding(obj) {
-        return ((this.x + this.frameX) + (this.width + this.frameW)) >= (obj.x + obj.frameX) &&
-            ((this.y + this.frameY) + (this.height + this.frameH)) >= (obj.y + obj.frameY) &&
-            (this.x + this.frameX) <= (obj.x + obj.frameX) &&
-            (this.y + this.frameY) <= ((obj.y + obj.frameY) + (obj.height + obj.frameH))
-            // ((this.x + this.frameX) + (this.width + this.frameW)) >= (obj.x + obj.frameX) &&
-            // (this.x + this.frameX) <= ((obj.x + obj.frameX) + (obj.width + obj.frameW)) &&
-            // ((this.y + this.frameY) + this.offsetY + (this.height + this.frameH)) >= (obj.y + obj.frameY) &&
-            // ((this.y + this.frameY) + this.offsetY) <= ((obj.y + obj.frameY) + (obj.height + obj.frameH))
-            // && obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.;
+        return this.x + this.width - this.offset.right > obj.x + obj.offset.left &&
+            this.y + this.height - this.offset.bottom > obj.y + obj.offset.top &&
+            this.x + this.offset.left < obj.x + obj.width - obj.offset.right &&
+            this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom
+
+
+        // ((this.x + this.frameX) + (this.width + this.frameW)) >= (obj.x + obj.frameX) &&
+        //     ((this.y + this.frameY) + (this.height + this.frameH)) >= (obj.y + obj.frameY) &&
+        //     (this.x + this.frameX) <= (obj.x + obj.frameX) &&
+        //     (this.y + this.frameY) <= ((obj.y + obj.frameY) + (obj.height + obj.frameH))
+        // ((this.x + this.frameX) + (this.width + this.frameW)) >= (obj.x + obj.frameX) &&
+        // (this.x + this.frameX) <= ((obj.x + obj.frameX) + (obj.width + obj.frameW)) &&
+        // ((this.y + this.frameY) + this.offsetY + (this.height + this.frameH)) >= (obj.y + obj.frameY) &&
+        // ((this.y + this.frameY) + this.offsetY) <= ((obj.y + obj.frameY) + (obj.height + obj.frameH))
+        // && obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.;
     };
     hit(obj) {
         this.energy -= obj.damage;

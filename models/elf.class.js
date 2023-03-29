@@ -2,10 +2,16 @@ class Elf extends MovableObject {
     y = 30;
     speed = 20;
     otherDirection = false;
-    frameX = 210;
-    frameY = 80;
-    frameW = -420;
-    frameH = -130;
+    // frameX = 210;
+    // frameY = 80;
+    // frameW = -420;
+    // frameH = -130;
+    offset = {
+        top: 93,
+        right: 220,
+        bottom: 50,
+        left: 220
+    };
 
     energy = 100;
     damage = 10;
@@ -117,9 +123,9 @@ class Elf extends MovableObject {
 
             if (this.isDead()) {
                 this.objectAnimation(this.IMAGES_DIE);
-                setTimeout(() => {
-                    clearInterval(animationInterval);
-                }, 150);
+                // setTimeout(() => {
+                //     clearInterval(animationInterval);
+                // }, 150);
             } else if (this.isHurt()) {
                 this.objectAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {

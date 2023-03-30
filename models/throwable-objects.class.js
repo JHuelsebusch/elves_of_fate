@@ -82,27 +82,17 @@ class ThrowableObjects extends MovableObject {
         setTimeout(() => {
             clearInterval(fireballLoad);
             let fireball = setInterval(() => {
-                this.objectAnimation(this.IMAGES_FIREBALL);
-            }, 1000 / 20);
-            let fireballMove = setInterval(() => {
-                this.moveRight();
+                if (this.isDead()) {
+                    clearInterval(fireball);
+                    this.explosion(this.IMAGES_FIREBALL_EXPLOSION)
+                } else {
+                    this.objectAnimation(this.IMAGES_FIREBALL);
+                    this.moveRight();
+                }
             }, 1000 / 20);
             setTimeout(() => {
-                clearInterval(fireball);
-                clearInterval(fireballMove);
-                this.explosion(this.IMAGES_FIREBALL_EXPLOSION)
-            }, 500);
-            if (this.isDead()) {
-                clearInterval(fireball);
-                clearInterval(fireballMove);
-                this.explosion(this.IMAGES_FIREBALL_EXPLOSION)
-                    // let fireballExplosion = setInterval(() => {
-                    //     this.objectAnimation(this.IMAGES_FIREBALL_EXPLOSION)
-                    // }, 1000 / 20);
-                    // setTimeout(() => {
-                    //     clearInterval(fireballExplosion);
-                    // }, 460);
-            }
+                this.energy = 0;
+            }, 1000);
         }, 400);
     }
 }

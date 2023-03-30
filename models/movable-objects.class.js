@@ -87,6 +87,7 @@ class MovableObject extends DrawableObject {
     explosion(images) {
         this.damage = 0;
         this.currentImage = 0;
+        this.x += 50;
         const animationInterval = setInterval(() => {
             this.objectAnimation(images);
         }, 100);

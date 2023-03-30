@@ -66,10 +66,13 @@ class Endboss extends MovableObject {
     }
 
     animate() {
-        if (this.isDead()) {
-            this.objectAnimation(this.IMAGES_DIE);
-        } else {
-            setInterval(() => {
+        const animationInterval = setInterval(() => {
+            if (this.isDead()) {
+                clearInterval(animationInterval);
+                this.die();
+
+            } else {
+
                 let moveInterval = setInterval(() => {
                     this.moveLeft();
                 }, 1000 / 60);
@@ -90,9 +93,7 @@ class Endboss extends MovableObject {
                         console.log(this.damage);
                     }, 2000);
                 }, 4000);
-            }, 6000);
-        }
-
-
+            }
+        }, 6000);
     }
 }

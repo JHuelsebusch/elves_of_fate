@@ -122,11 +122,9 @@ class Elf extends MovableObject {
             this.objectAnimation(this.IMAGES_IDLE);
 
             if (this.isDead()) {
-                this.objectAnimation(this.IMAGES_DIE);
-                // setTimeout(() => {
-                //     clearInterval(animationInterval);
-                // }, 150);
-            } else if (this.isHurt()) {
+                clearInterval(animationInterval);
+                this.die();
+            } else if (this.isHurt() && this.lastDamage != 0) {
                 this.objectAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.objectAnimation(this.IMAGES_JUMP)

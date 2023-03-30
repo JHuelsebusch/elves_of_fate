@@ -6,6 +6,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    throwableObjects = [];
 
 
     constructor(canvas, keyboard) {
@@ -14,26 +15,46 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
     }
 
     setWorld() {
         this.elf.world = this;
     }
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
-            this.level.orcs.forEach((orc) => {
-                if (this.elf.isColliding(orc)) {
-                    this.elf.hit(orc);
-                    this.statusBar.setPercentage(this.elf.energy);
-                    console.log(this.elf.energy)
-                }
-                if (orc.isColliding(this.elf)) {
-                    orc.hit(this.elf);
-                }
-            })
+
+            this.checkCollisions();
+            this.checkThrowObjects();
         }, 100);
+    }
+    checkThrowObjects() {
+        if (this.keyboard.ENTER) {
+            let attack = new ThrowableObjects(this.elf.x, this.elf.y);
+            this.throwableObjects.push(attack);
+        }
+    }
+
+    checkCollisions() {
+        this.level.orcs.forEach((orc) => {
+            if (this.elf.isColliding(orc)) {
+                this.elf.hit(orc);
+                this.statusBar.setPercentage(this.elf.energy);
+            }
+            if (orc.isColliding(this.elf)) {
+                orc.hit(this.elf);
+            }
+            this.throwableObjects.forEach((attack) => {
+                if (orc.isColliding(attack)) {
+                    orc.hit(attack);
+                    attack.hit(orc);
+                }
+                // if (attack.isColliding(orc)) {
+                //     console.log('Attack End')
+                // }
+            });
+        })
     }
 
     draw() {
@@ -41,8 +62,9 @@ class World {
         this.ctx.translate(this.camera_x, 0); // Forwards
 
         this.addObjectsToMap(this.level.backgroundObjects);
-        this.addToMap(this.elf);
         this.addObjectsToMap(this.level.orcs);
+        this.addToMap(this.elf);
+        this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0); // Back
         this.addToMap(this.statusBar);

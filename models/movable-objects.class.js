@@ -5,6 +5,7 @@ class MovableObject extends DrawableObject {
     acceleration = 0.05;
     energy = 100;
     lastHit = 0;
+    lastDamage = 0;
 
     offset = {
         top: 0,
@@ -35,31 +36,25 @@ class MovableObject extends DrawableObject {
             this.y + this.height - this.offset.bottom > obj.y + obj.offset.top &&
             this.x + this.offset.left < obj.x + obj.width - obj.offset.right &&
             this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom
-
-
-        // ((this.x + this.frameX) + (this.width + this.frameW)) >= (obj.x + obj.frameX) &&
-        //     ((this.y + this.frameY) + (this.height + this.frameH)) >= (obj.y + obj.frameY) &&
-        //     (this.x + this.frameX) <= (obj.x + obj.frameX) &&
-        //     (this.y + this.frameY) <= ((obj.y + obj.frameY) + (obj.height + obj.frameH))
-        // ((this.x + this.frameX) + (this.width + this.frameW)) >= (obj.x + obj.frameX) &&
-        // (this.x + this.frameX) <= ((obj.x + obj.frameX) + (obj.width + obj.frameW)) &&
-        // ((this.y + this.frameY) + this.offsetY + (this.height + this.frameH)) >= (obj.y + obj.frameY) &&
-        // ((this.y + this.frameY) + this.offsetY) <= ((obj.y + obj.frameY) + (obj.height + obj.frameH))
-        // && obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.;
     };
+
     hit(obj) {
         this.energy -= obj.damage;
+        this.lastDamage = obj.damage;
+        console.log(this.energy)
         if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
     }
+
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000;
         return timePassed < 0.2;
     }
+
     isDead() {
         return this.energy == 0;
     }
@@ -73,9 +68,11 @@ class MovableObject extends DrawableObject {
         this.otherDirection = true;
         this.x -= this.speed;
     }
+
     jump() {
         this.speedY = 4.5;
     }
+
     die() {
         this.damage = 0;
         this.currentImage = 0;
@@ -84,8 +81,23 @@ class MovableObject extends DrawableObject {
         }, 100);
         setTimeout(() => {
             clearInterval(animationInterval);
-        }, 1000);
+        }, 950);
+    }
 
+    explosion(images) {
+        this.damage = 0;
+        this.currentImage = 0;
+        const animationInterval = setInterval(() => {
+            this.objectAnimation(images);
+        }, 100);
+        // let fireballMove = setInterval(() => {
+        //     this.moveRight();
+        // }, 200);
+        setTimeout(() => {
+            clearInterval(animationInterval);
+            // clearInterval(fireballMove);
+            this.y = -500;
+        }, 950);
     }
 
     objectAnimation(images) {
@@ -93,17 +105,6 @@ class MovableObject extends DrawableObject {
         let path = images[i];
         this.img = this.imgCache[path];
         this.currentImage++
-    }
-
-    objectAnimationDead(images) {
-        if (this.currentImageDead < images.length) {
-            let path = images[this.currentImage];
-            this.img = this.imgCache[path];
-            this.currentImageDead++
-        } else {
-            let path = images[this.currentImageDead];
-            this.img = this.imgCache[path];
-        }
     }
 
 }

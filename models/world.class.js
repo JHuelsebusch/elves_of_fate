@@ -6,7 +6,8 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
-    throwableObjects = [];
+    manaBar = new ManaBar();
+    throwableObject = [];
 
 
     constructor(canvas, keyboard) {
@@ -31,8 +32,8 @@ class World {
     }
     checkThrowObjects() {
         if (this.keyboard.ENTER) {
-            let attack = new ThrowableObjects(this.elf.x, this.elf.y);
-            this.throwableObjects.push(attack);
+            let attack = new ThrowableObject(this.elf.x, this.elf.y);
+            this.throwableObject.push(attack);
         }
     }
 
@@ -45,14 +46,11 @@ class World {
             if (orc.isColliding(this.elf)) {
                 orc.hit(this.elf);
             }
-            this.throwableObjects.forEach((attack) => {
+            this.throwableObject.forEach((attack) => {
                 if (orc.isColliding(attack)) {
                     orc.hit(attack);
                     attack.hit(orc);
                 }
-                // if (attack.isColliding(orc)) {
-                //     console.log('Attack End')
-                // }
             });
         })
     }
@@ -63,11 +61,14 @@ class World {
 
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.orcs);
+        this.addObjectsToMap(this.level.potions);
+        this.addObjectsToMap(this.level.spellbooks);
         this.addToMap(this.elf);
-        this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.throwableObject);
 
         this.ctx.translate(-this.camera_x, 0); // Back
         this.addToMap(this.statusBar);
+        this.addToMap(this.manaBar);
 
         let self = this;
         requestAnimationFrame(function() { self.draw(); });

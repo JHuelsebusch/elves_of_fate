@@ -1,5 +1,4 @@
 class MovableObject extends DrawableObject {
-    otherDirection = false;
     speed = 0.25;
     speedY = 0;
     acceleration = 0.05;
@@ -91,12 +90,8 @@ class MovableObject extends DrawableObject {
         const animationInterval = setInterval(() => {
             this.objectAnimation(images);
         }, 100);
-        // let fireballMove = setInterval(() => {
-        //     this.moveRight();
-        // }, 200);
         setTimeout(() => {
             clearInterval(animationInterval);
-            // clearInterval(fireballMove);
             this.y = -500;
         }, 950);
     }

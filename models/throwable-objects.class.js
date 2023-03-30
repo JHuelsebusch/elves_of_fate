@@ -1,4 +1,4 @@
-class ThrowableObjects extends MovableObject {
+class ThrowableObject extends MovableObject {
 
     offset = {
         top: 220,

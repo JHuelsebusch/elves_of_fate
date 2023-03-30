@@ -1,11 +1,7 @@
 class Elf extends MovableObject {
     y = 30;
     speed = 20;
-    otherDirection = false;
-    // frameX = 210;
-    // frameY = 80;
-    // frameW = -420;
-    // frameH = -130;
+
     offset = {
         top: 93,
         right: 220,

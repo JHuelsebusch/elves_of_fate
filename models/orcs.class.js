@@ -1,10 +1,6 @@
 class Orc extends MovableObject {
     otherDirection = true;
 
-    // frameX = 200;
-    // frameY = 115;
-    // frameW = -350;
-    // frameH = -145;
     offset = {
         top: 115,
         right: 210,
@@ -65,6 +61,7 @@ class Orc extends MovableObject {
         const animationInterval = setInterval(() => {
             if (this.isDead()) {
                 clearInterval(animationInterval);
+                clearInterval(movingInterval);
                 this.die();
             } else {
                 this.objectAnimation(this.IMAGES_WALK);

@@ -40,5 +40,18 @@ const level1 = new Level(
         new BackgroundObject('./img/bg/PNG/game_background_5/layers/back_decor.png', 886.33333 * 3, 0),
         new BackgroundObject('./img/bg/PNG/game_background_5/layers/ground_decor.png', 886.33333 * 3, 0),
         new BackgroundObject('./img/bg/PNG/game_background_5/layers/front_decor.png', 886.33333 * 3, -240),
+    ], [
+        new Potion(),
+        new Potion(),
+        new Potion(),
+        new Potion(),
+        new Potion(),
+    ], [
+        new Spellbook(),
+        new Spellbook(),
+        new Spellbook(),
+        new Spellbook(),
+        new Spellbook(),
+        new Spellbook(),
     ]
 );

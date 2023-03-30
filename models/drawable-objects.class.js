@@ -5,6 +5,7 @@ class DrawableObject {
     height = 196.875 * 1.5;
     width = 375 * 1.5;
     imgCache = {};
+    otherDirection = false;
     currentImage = 0;
     currentImageDead = 0;
 
@@ -26,7 +27,7 @@ class DrawableObject {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
     drawFrame(ctx) {
-        if (this instanceof Elf || this instanceof Orc || this instanceof Endboss || this instanceof ThrowableObjects) {
+        if (this instanceof CollectibleObject || this instanceof Elf || this instanceof Orc || this instanceof Endboss || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = '1';
             ctx.strokeStyle = 'blue';

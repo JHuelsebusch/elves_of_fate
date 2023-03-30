@@ -64,10 +64,8 @@ class Orc extends MovableObject {
 
         const animationInterval = setInterval(() => {
             if (this.isDead()) {
-                this.objectAnimation(this.IMAGES_DIE);
-                setTimeout(() => {
-                    clearInterval(animationInterval);
-                }, 100);
+                clearInterval(animationInterval);
+                this.die();
             } else {
                 this.objectAnimation(this.IMAGES_WALK);
             }

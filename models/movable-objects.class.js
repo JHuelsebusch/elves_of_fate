@@ -76,12 +76,34 @@ class MovableObject extends DrawableObject {
     jump() {
         this.speedY = 4.5;
     }
+    die() {
+        this.damage = 0;
+        this.currentImage = 0;
+        const animationInterval = setInterval(() => {
+            this.objectAnimation(this.IMAGES_DIE);
+        }, 100);
+        setTimeout(() => {
+            clearInterval(animationInterval);
+        }, 1000);
+
+    }
 
     objectAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];
         this.img = this.imgCache[path];
         this.currentImage++
+    }
+
+    objectAnimationDead(images) {
+        if (this.currentImageDead < images.length) {
+            let path = images[this.currentImage];
+            this.img = this.imgCache[path];
+            this.currentImageDead++
+        } else {
+            let path = images[this.currentImageDead];
+            this.img = this.imgCache[path];
+        }
     }
 
 }

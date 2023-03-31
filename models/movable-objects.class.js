@@ -40,7 +40,6 @@ class MovableObject extends DrawableObject {
     hit(obj) {
         this.energy -= obj.damage;
         this.lastDamage = obj.damage;
-        console.log(this.energy)
         if (this.energy < 0) {
             this.energy = 0;
         } else {

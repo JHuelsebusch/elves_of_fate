@@ -15,7 +15,7 @@ class ManaBar extends DrawableObject {
         'img/mana_bar/mana_bar_90.png',
         'img/mana_bar/mana_bar_100.png',
     ];
-    percentage = 0;
+    percentage = 20;
 
 
     constructor() {

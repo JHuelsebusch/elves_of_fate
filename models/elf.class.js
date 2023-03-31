@@ -11,7 +11,7 @@ class Elf extends MovableObject {
 
     energy = 100;
     damage = 10;
-    mana = 0;
+    mana = 20;
 
     IMAGES_IDLE = [
         'img/elf/PNG/3/Elf_03__IDLE_000.png',

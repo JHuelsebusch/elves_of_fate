@@ -6,7 +6,7 @@ class Fireball extends ThrowableObject {
         left: 180
     };
 
-    energy = 1;
+    energy = 10;
     damage = 30;
 
     IMAGES_FIREBALL_LOAD = [

@@ -88,9 +88,10 @@ class Endboss extends MovableObject {
                     }
                 }, 1000 / 10)
 
-                setTimeout(() => {
+                let attackTimeout = setTimeout(() => {
                     clearInterval(moveInterval);
                     clearInterval(animationWalkInterval);
+                    console.log('Attack')
 
                     let animationAttackInterval = setInterval(() => {
                         if (this.isDead()) {
@@ -101,13 +102,14 @@ class Endboss extends MovableObject {
                             this.objectAnimation(this.IMAGES_ATTACK);
                         }
                     }, 1000 / 20);
-
-                    this.damage = 50;
-
-                    setTimeout(() => {
+                    let endTimeout = setTimeout(() => {
                         clearInterval(animationAttackInterval);
-                        this.damage = 5;
+                        console.log('endTimeout');
                     }, 2000);
+
+                    // this.damage = 50;
+
+
 
                 }, 4000);
             }

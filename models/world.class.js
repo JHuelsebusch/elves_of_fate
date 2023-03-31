@@ -37,23 +37,33 @@ class World {
             this.throwableObject.push(attack);
             this.elf.mana -= 30;
             this.manaBar.setPercentage(this.elf.mana);
+            setTimeout(() => {
+                this.throwableObject.splice(-1)
+            }, 1500);
         }
         if (this.keyboard.SPACE && this.elf.mana >= 5) {
             let attack = new Flash(this.elf.x, this.elf.y);
             this.throwableObject.push(attack);
             this.elf.mana -= 5;
             this.manaBar.setPercentage(this.elf.mana);
+            setTimeout(() => {
+                this.throwableObject.splice(-1)
+            }, 1000);
         }
     }
 
     checkCollisions() {
+        this.collisionOrcs();
+        this.collisionEndboss();
+        this.collisionPotions();
+        this.collisionSpellbooks();
+    }
+
+    collisionOrcs() {
         this.level.orcs.forEach((orc) => {
             if (this.elf.isColliding(orc)) {
                 this.elf.hit(orc);
                 this.statusBar.setPercentage(this.elf.energy);
-            }
-            if (orc.isColliding(this.elf)) {
-                orc.hit(this.elf);
             }
             this.throwableObject.forEach((attack) => {
                 if (orc.isColliding(attack)) {
@@ -62,6 +72,23 @@ class World {
                 }
             });
         })
+    }
+    collisionEndboss() {
+        this.level.endboss.forEach((endboss) => {
+            if (this.elf.isColliding(endboss)) {
+                this.elf.hit(endboss);
+                this.statusBar.setPercentage(this.elf.energy);
+            }
+            this.throwableObject.forEach((attack) => {
+                if (endboss.isColliding(attack)) {
+                    endboss.hit(attack);
+                    attack.hit(endboss);
+                }
+            });
+        })
+    }
+
+    collisionPotions() {
         this.level.potions.forEach((potion) => {
             if (this.elf.isColliding(potion)) {
                 this.elf.collect(potion.mana)
@@ -72,6 +99,9 @@ class World {
 
             }
         })
+    }
+
+    collisionSpellbooks() {
         this.level.spellbooks.forEach((spellbook) => {
             if (this.elf.isColliding(spellbook)) {
                 this.level.spellbooks.splice(this.level.spellbooks.indexOf(spellbook), 1);
@@ -90,6 +120,7 @@ class World {
 
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.orcs);
+        this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.level.spellbooks);
         this.addObjectsToMap(this.level.potions);
         this.addToMap(this.elf);

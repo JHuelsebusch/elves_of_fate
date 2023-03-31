@@ -3,12 +3,13 @@ const level1 = new Level(
         new Orc(),
         new Orc(),
         new Orc(),
-        // new Orc(),
-        // new Orc(),
-        // new Orc(),
-        // new Orc(),
-        // new Orc(),
-        // new Orc(),
+        new Orc(),
+        new Orc(),
+        new Orc(),
+        new Orc(),
+        new Orc(),
+        new Orc(),
+    ], [
         new Endboss()
     ], [
         new BackgroundObject('./img/bg/PNG/game_background_5/layers/battleground.png', -886.33333, 0),

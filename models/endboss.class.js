@@ -106,11 +106,6 @@ class Endboss extends MovableObject {
                         clearInterval(animationAttackInterval);
                         console.log('endTimeout');
                     }, 2000);
-
-                    // this.damage = 50;
-
-
-
                 }, 4000);
             }
         }, 6000);

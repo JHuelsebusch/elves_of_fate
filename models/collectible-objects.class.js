@@ -10,7 +10,7 @@ class CollectibleObject extends DrawableObject {
 
     constructor() {
         super();
-        this.x = 400 + Math.random() * 2000;
+        this.x = Math.random() * 2000;
         this.y = 50 + Math.random() * 100;
     }
     collect() {

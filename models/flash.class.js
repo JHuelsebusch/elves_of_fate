@@ -40,14 +40,17 @@ class Flash extends ThrowableObject {
 
     animate() {
         this.currentImage = 0;
-        let fireball = setInterval(() => {
+        let flash = setInterval(() => {
             if (this.isDead()) {
-                clearInterval(fireball);
+                clearInterval(flash);
+                this.damage = 0;
             } else {
                 this.objectAnimation(this.IMAGES_FLASH);
-                this.moveRight();
             }
         }, 1000 / 20);
+        setInterval(() => {
+            this.moveRight();
+        }, 1000 / 10);
         setTimeout(() => {
             this.energy = 0;
         }, 1000);

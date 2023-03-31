@@ -116,7 +116,6 @@ class Elf extends MovableObject {
 
         const animationInterval = setInterval(() => {
             this.walk_sound.pause();
-            this.offset.right = 220;
             this.objectAnimation(this.IMAGES_IDLE);
 
             if (this.isDead()) {
@@ -131,10 +130,9 @@ class Elf extends MovableObject {
                     this.walk_sound.play();
                     this.objectAnimation(this.IMAGES_WALK);
                 }
-                if (this.world.keyboard.SPACE) {
-                    // this.offset.right = 150;
-                    this.objectAnimation(this.IMAGES_ATTACK)
-                }
+                // if (this.world.keyboard.SPACE) {
+                //     this.objectAnimation(this.IMAGES_ATTACK)
+                // }
             }
             this.world.camera_x = -this.x
 

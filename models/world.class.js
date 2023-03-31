@@ -33,9 +33,15 @@ class World {
     }
     checkThrowObjects() {
         if (this.keyboard.ENTER && this.elf.mana > 30) {
-            let attack = new ThrowableObject(this.elf.x, this.elf.y);
+            let attack = new Fireball(this.elf.x, this.elf.y);
             this.throwableObject.push(attack);
             this.elf.mana -= 30;
+            this.manaBar.setPercentage(this.elf.mana);
+        }
+        if (this.keyboard.SPACE && this.elf.mana >= 5) {
+            let attack = new Flash(this.elf.x, this.elf.y);
+            this.throwableObject.push(attack);
+            this.elf.mana -= 5;
             this.manaBar.setPercentage(this.elf.mana);
         }
     }

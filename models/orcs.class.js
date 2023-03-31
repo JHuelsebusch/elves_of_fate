@@ -9,7 +9,7 @@ class Orc extends MovableObject {
     };
 
     energy = 5;
-    damage = 2;
+    damage = 10;
 
     IMAGES_WALK = [
         'img/orc/PNG/3_ORK/ORK_03_WALK_000.png',

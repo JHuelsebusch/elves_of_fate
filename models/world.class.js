@@ -8,6 +8,7 @@ class World {
     statusBar = new StatusBar();
     manaBar = new ManaBar();
     throwableObject = [];
+    score = 0;
 
 
     constructor(canvas, keyboard) {
@@ -31,9 +32,11 @@ class World {
         }, 100);
     }
     checkThrowObjects() {
-        if (this.keyboard.ENTER) {
+        if (this.keyboard.ENTER && this.elf.mana > 30) {
             let attack = new ThrowableObject(this.elf.x, this.elf.y);
             this.throwableObject.push(attack);
+            this.elf.mana -= 30;
+            this.manaBar.setPercentage(this.elf.mana);
         }
     }
 
@@ -53,6 +56,26 @@ class World {
                 }
             });
         })
+        this.level.potions.forEach((potion) => {
+            if (this.elf.isColliding(potion)) {
+                this.elf.collect(potion.mana)
+                potion.collect();
+                this.level.potions.splice(this.level.potions.indexOf(potion), 1);
+                this.manaBar.setPercentage(this.elf.mana);
+                this.receiveScore(900);
+
+            }
+        })
+        this.level.spellbooks.forEach((spellbook) => {
+            if (this.elf.isColliding(spellbook)) {
+                this.level.spellbooks.splice(this.level.spellbooks.indexOf(spellbook), 1);
+                this.receiveScore(10000);
+            }
+        })
+    }
+
+    receiveScore(n) {
+        this.score += +n;
     }
 
     draw() {
@@ -61,8 +84,8 @@ class World {
 
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.orcs);
-        this.addObjectsToMap(this.level.potions);
         this.addObjectsToMap(this.level.spellbooks);
+        this.addObjectsToMap(this.level.potions);
         this.addToMap(this.elf);
         this.addObjectsToMap(this.throwableObject);
 

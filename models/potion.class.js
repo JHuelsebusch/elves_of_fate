@@ -3,6 +3,8 @@ class Potion extends CollectibleObject {
     height = 36;
     y = 330;
 
+    mana = 40;
+
     constructor() {
         super().loadImage('img/potion/potion-blue.png')
     }

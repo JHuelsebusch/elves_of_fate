@@ -3,19 +3,19 @@ class ManaBar extends DrawableObject {
 
 
     IMAGES_HP = [
-        'img/hp_bar/HP_bar_00.png',
-        'img/hp_bar/HP_bar_10.png',
-        'img/hp_bar/HP_bar_20.png',
-        'img/hp_bar/HP_bar_30.png',
-        'img/hp_bar/HP_bar_40.png',
-        'img/hp_bar/HP_bar_50.png',
-        'img/hp_bar/HP_bar_60.png',
-        'img/hp_bar/HP_bar_70.png',
-        'img/hp_bar/HP_bar_80.png',
-        'img/hp_bar/HP_bar_90.png',
-        'img/hp_bar/HP_bar_100.png',
+        'img/mana_bar/mana_bar_00.png',
+        'img/mana_bar/mana_bar_10.png',
+        'img/mana_bar/mana_bar_20.png',
+        'img/mana_bar/mana_bar_30.png',
+        'img/mana_bar/mana_bar_40.png',
+        'img/mana_bar/mana_bar_50.png',
+        'img/mana_bar/mana_bar_60.png',
+        'img/mana_bar/mana_bar_70.png',
+        'img/mana_bar/mana_bar_80.png',
+        'img/mana_bar/mana_bar_90.png',
+        'img/mana_bar/mana_bar_100.png',
     ];
-    percentage = 100;
+    percentage = 0;
 
 
     constructor() {

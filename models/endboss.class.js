@@ -10,7 +10,7 @@ class Endboss extends MovableObject {
         left: 250
     };
 
-    energy = 100;
+    energy = 60;
     damage = 5;
 
     IMAGES_WALK = [
@@ -76,22 +76,40 @@ class Endboss extends MovableObject {
                 let moveInterval = setInterval(() => {
                     this.moveLeft();
                 }, 1000 / 60);
+
                 let animationWalkInterval = setInterval(() => {
-                    this.objectAnimation(this.IMAGES_WALK);
+                    if (this.isDead()) {
+                        clearInterval(moveInterval);
+                        clearInterval(animationWalkInterval);
+                        clearInterval(animationInterval);
+                        this.die();
+                    } else {
+                        this.objectAnimation(this.IMAGES_WALK);
+                    }
                 }, 1000 / 10)
+
                 setTimeout(() => {
                     clearInterval(moveInterval);
                     clearInterval(animationWalkInterval);
+
                     let animationAttackInterval = setInterval(() => {
-                        this.objectAnimation(this.IMAGES_ATTACK);
+                        if (this.isDead()) {
+                            clearInterval(animationAttackInterval);
+                            clearInterval(animationInterval);
+                            this.die();
+                        } else {
+                            this.objectAnimation(this.IMAGES_ATTACK);
+                        }
                     }, 1000 / 20);
+
                     this.damage = 50;
-                    console.log(this.damage);
+
                     setTimeout(() => {
                         clearInterval(animationAttackInterval);
                         this.damage = 5;
                         console.log(this.damage);
                     }, 2000);
+
                 }, 4000);
             }
         }, 6000);

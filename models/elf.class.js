@@ -1,6 +1,6 @@
 class Elf extends MovableObject {
     y = 30;
-    speed = 20;
+    speed = 30;
 
     offset = {
         top: 93,
@@ -11,6 +11,7 @@ class Elf extends MovableObject {
 
     energy = 100;
     damage = 10;
+    mana = 0;
 
     IMAGES_IDLE = [
         'img/elf/PNG/3/Elf_03__IDLE_000.png',
@@ -115,6 +116,7 @@ class Elf extends MovableObject {
 
         const animationInterval = setInterval(() => {
             this.walk_sound.pause();
+            this.offset.right = 220;
             this.objectAnimation(this.IMAGES_IDLE);
 
             if (this.isDead()) {
@@ -130,11 +132,19 @@ class Elf extends MovableObject {
                     this.objectAnimation(this.IMAGES_WALK);
                 }
                 if (this.world.keyboard.SPACE) {
+                    // this.offset.right = 150;
                     this.objectAnimation(this.IMAGES_ATTACK)
                 }
             }
             this.world.camera_x = -this.x
 
         }, 100)
+    }
+
+    collect(mana) {
+        this.mana += mana
+        if (this.mana > 100) {
+            this.mana = 100;
+        }
     }
 }

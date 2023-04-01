@@ -5,6 +5,8 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
     lastDamage = 0;
+    // world;
+    points = 0;
 
     offset = {
         top: 0,
@@ -60,6 +62,7 @@ class MovableObject extends DrawableObject {
     moveRight() {
         this.otherDirection = false;
         this.x += this.speed;
+        this.increasePoints(3);
     }
 
     moveLeft() {
@@ -100,6 +103,9 @@ class MovableObject extends DrawableObject {
         let path = images[i];
         this.img = this.imgCache[path];
         this.currentImage++
+    }
+    increasePoints(n) {
+        this.points += +n;
     }
 
 }

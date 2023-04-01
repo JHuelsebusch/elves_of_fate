@@ -68,8 +68,9 @@ class Endboss extends MovableObject {
     animate() {
         const animationInterval = setInterval(() => {
             if (this.isDead()) {
-                clearInterval(animationInterval);
                 this.die();
+                this.increasePoints(25000);
+                clearInterval(animationInterval);
 
             } else {
 
@@ -79,10 +80,11 @@ class Endboss extends MovableObject {
 
                 let animationWalkInterval = setInterval(() => {
                     if (this.isDead()) {
+                        this.die();
+                        this.increasePoints(25000);
                         clearInterval(moveInterval);
                         clearInterval(animationWalkInterval);
                         clearInterval(animationInterval);
-                        this.die();
                     } else {
                         this.objectAnimation(this.IMAGES_WALK);
                     }
@@ -91,20 +93,22 @@ class Endboss extends MovableObject {
                 let attackTimeout = setTimeout(() => {
                     clearInterval(moveInterval);
                     clearInterval(animationWalkInterval);
-                    console.log('Attack')
+                    // console.log('Attack')
 
                     let animationAttackInterval = setInterval(() => {
                         if (this.isDead()) {
+                            this.die();
+                            this.increasePoints(25000);
                             clearInterval(animationAttackInterval);
                             clearInterval(animationInterval);
-                            this.die();
+
                         } else {
                             this.objectAnimation(this.IMAGES_ATTACK);
                         }
                     }, 1000 / 20);
                     let endTimeout = setTimeout(() => {
                         clearInterval(animationAttackInterval);
-                        console.log('endTimeout');
+                        // console.log('endTimeout');
                     }, 2000);
                 }, 4000);
             }

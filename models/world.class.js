@@ -8,7 +8,9 @@ class World {
     statusBar = new StatusBar();
     manaBar = new ManaBar();
     throwableObject = [];
+    points = 0;
     score = 0;
+    lastAttack = 0;
 
 
     constructor(canvas, keyboard) {
@@ -22,34 +24,48 @@ class World {
 
     setWorld() {
         this.elf.world = this;
+        //     this.level.orcs.forEach((orc) => {
+        //         orc.world = this;
+        //     })
+        //     this.level.endboss.forEach((endboss) => {
+        //         endboss.world = this;
+        //     })
     }
 
     run() {
         setInterval(() => {
-
             this.checkCollisions();
             this.checkThrowObjects();
+            this.updateScore();
         }, 100);
     }
+
     checkThrowObjects() {
-        if (this.keyboard.ENTER && this.elf.mana > 30) {
+        if (this.keyboard.ENTER && this.elf.mana > 30 && !this.cooldown()) {
             let attack = new Fireball(this.elf.x, this.elf.y);
             this.throwableObject.push(attack);
             this.elf.mana -= 30;
             this.manaBar.setPercentage(this.elf.mana);
+            this.lastAttack = new Date().getTime();
             setTimeout(() => {
                 this.throwableObject.splice(-1)
             }, 1500);
         }
-        if (this.keyboard.SPACE && this.elf.mana >= 5) {
+        if (this.keyboard.SPACE && this.elf.mana >= 5 && !this.cooldown()) {
             let attack = new Flash(this.elf.x, this.elf.y);
             this.throwableObject.push(attack);
             this.elf.mana -= 5;
             this.manaBar.setPercentage(this.elf.mana);
+            this.lastAttack = new Date().getTime();
             setTimeout(() => {
                 this.throwableObject.splice(-1)
             }, 1000);
         }
+    }
+    cooldown() {
+        let timePassed = new Date().getTime() - this.lastAttack;
+        timePassed = timePassed / 1000;
+        return timePassed < 0.5;
     }
 
     checkCollisions() {
@@ -95,7 +111,7 @@ class World {
                 potion.collect();
                 this.level.potions.splice(this.level.potions.indexOf(potion), 1);
                 this.manaBar.setPercentage(this.elf.mana);
-                this.receiveScore(900);
+                this.increasePoints(900);
 
             }
         })
@@ -105,13 +121,23 @@ class World {
         this.level.spellbooks.forEach((spellbook) => {
             if (this.elf.isColliding(spellbook)) {
                 this.level.spellbooks.splice(this.level.spellbooks.indexOf(spellbook), 1);
-                this.receiveScore(10000);
+                this.increasePoints(10000);
             }
         })
     }
 
-    receiveScore(n) {
-        this.score += +n;
+    increasePoints(n) {
+        this.points += +n;
+    }
+    updateScore() {
+        this.score = this.points;
+        this.score += this.elf.points;
+        this.level.orcs.forEach((orc) => {
+            this.score += orc.points;
+        })
+        this.level.orcs.forEach((endboss) => {
+            this.score += endboss.points;
+        })
     }
 
     draw() {

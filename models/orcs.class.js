@@ -5,7 +5,7 @@ class Orc extends MovableObject {
         top: 115,
         right: 210,
         bottom: 30,
-        left: 150
+        left: 210
     };
 
     energy = 5;
@@ -63,6 +63,7 @@ class Orc extends MovableObject {
                 clearInterval(animationInterval);
                 clearInterval(movingInterval);
                 this.die();
+                this.increasePoints(1500);
             } else {
                 this.objectAnimation(this.IMAGES_WALK);
             }

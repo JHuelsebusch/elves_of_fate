@@ -4,10 +4,20 @@ let keyboard = new Keyboard();
 
 function init() {
     canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
+}
 
+function startGame() {
+    hideScreens();
+    initLevel();
+    world = new World(canvas, keyboard);
     runGame();
 }
+
+function hideScreens() {
+    document.getElementById('startscreen').classList.add('dNone');
+    document.getElementById('endscreen').classList.add('dNone');
+}
+
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 68) {
         keyboard.RIGHT = true;
@@ -52,6 +62,7 @@ window.addEventListener("keyup", (e) => {
 function runGame() {
     setInterval(() => {
         setHighscore();
+        checkGameOver();
     }, 1000 / 20);
 }
 
@@ -79,4 +90,19 @@ function setHighscore() {
         highscore = score;
     }
     document.getElementById('score').innerHTML = highscore;
+}
+
+function checkGameOver() {
+    if (world.elf.energy == 0) {
+        setTimeout(() => {
+            document.getElementById('endscreen').classList.remove('dNone');
+            document.getElementById('endscreenHeadline').innerHTML = 'Game<br>over';
+        }, 500);
+    }
+    if (world.endbossEnergy == 0) {
+        setTimeout(() => {
+            document.getElementById('endscreen').classList.remove('dNone');
+            document.getElementById('endscreenHeadline').innerHTML = 'Victory';
+        }, 500);
+    }
 }

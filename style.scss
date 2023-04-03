@@ -9,6 +9,8 @@ body {
     box-sizing: border-box;
     font-family: Adigiana;
     font-size: 30px;
+    color: #FCAB40;
+    text-shadow: -2px 0 #7D4B07, 0 2px #7D4B07, 2px 0 #7D4B07, 0 -2px #7D4B07;
     background-image: url('../img/bg/PNG/game_background_4/game_background_4.png');
     display: flex;
     flex-direction: column;
@@ -18,6 +20,29 @@ body {
 
 canvas {
     background-color: black;
+    border-radius: 20px;
+    // box-shadow: 5px 5px 10px 5px #66462D, -9px 5px 10px 5px #66462D, -7px -5px 10px 5px #66462D, 12px -5px 10px 5px #66462D, 12px 10px 10px 7px #7D4B07, -10px 10px 10px 7px #7D4B07, -10px -7px 15px 1px #7D4B07, 10px 10px 5px 5px rgba(252, 171, 64, 0);
+}
+
+.dNone {
+    display: none !important;
+}
+
+.btn {
+    width: 200px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: #55ACEE;
+    border: 2px solid #226699;
+    color: #FCAB40;
+    text-shadow: -2px 0 #7D4B07, 0 2px #7D4B07, 2px 0 #7D4B07, 0 -2px #7D4B07;
+    font-family: Adigiana;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #226699;
 }
 
 .logo {
@@ -42,6 +67,60 @@ canvas {
             width: 45%;
             display: flex;
             justify-content: space-between;
+        }
+    }
+}
+
+.startscreen {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    background-image: url('../img/bg/PNG/game_background_4/game_background_4.png');
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .logo {
+        width: 400px;
+    }
+    .gameDescription {
+        margin: 40px;
+        text-align: center;
+    }
+}
+
+.endscreen {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #7d4c0710;
+    div {
+        width: 720px;
+        height: 480px;
+        background-image: url('../img/logo/logo_clean.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        span {
+            text-align: center;
+            font-size: 150px;
+            line-height: 80%;
+        }
+        .btn {
+            position: absolute;
+            bottom: -55px;
+            width: unset;
         }
     }
 }

@@ -11,6 +11,7 @@ class World {
     points = 0;
     score = 0;
     lastAttack = 0;
+    endboss;
 
 
     constructor(canvas, keyboard) {
@@ -37,6 +38,7 @@ class World {
             this.checkCollisions();
             this.checkThrowObjects();
             this.updateScore();
+            this.checkEndbossEnergy();
         }, 100);
     }
 
@@ -62,6 +64,7 @@ class World {
             }, 1000);
         }
     }
+
     cooldown() {
         let timePassed = new Date().getTime() - this.lastAttack;
         timePassed = timePassed / 1000;
@@ -138,6 +141,12 @@ class World {
         })
         this.level.endboss.forEach((endboss) => {
             this.score += endboss.points;
+        })
+    }
+    checkEndbossEnergy() {
+        this.endbossEnergy = 0;
+        this.level.endboss.forEach((endboss) => {
+            this.endbossEnergy += endboss.energy;
         })
     }
 

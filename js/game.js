@@ -60,9 +60,9 @@ window.addEventListener("keyup", (e) => {
 })
 
 function runGame() {
-    setInterval(() => {
+    let gameInterval = setInterval(() => {
         setHighscore();
-        checkGameOver();
+        checkGameOver(gameInterval);
     }, 1000 / 20);
 }
 
@@ -92,17 +92,19 @@ function setHighscore() {
     document.getElementById('score').innerHTML = highscore;
 }
 
-function checkGameOver() {
+function checkGameOver(gameInterval) {
     if (world.elf.energy == 0) {
+        clearInterval(gameInterval);
         setTimeout(() => {
             document.getElementById('endscreen').classList.remove('dNone');
             document.getElementById('endscreenHeadline').innerHTML = 'Game<br>over';
-        }, 500);
+        }, 1000);
     }
     if (world.endbossEnergy == 0) {
+        clearInterval(gameInterval);
         setTimeout(() => {
             document.getElementById('endscreen').classList.remove('dNone');
-            document.getElementById('endscreenHeadline').innerHTML = 'Victory';
-        }, 500);
+            document.getElementById('endscreenHeadline').innerHTML = `Victory`;
+        }, 1000);
     }
 }

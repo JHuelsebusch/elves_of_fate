@@ -24,16 +24,24 @@ canvas {
     width: 200px;
 }
 
-.menu {
+.game {
     width: 720px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    .score {
-        color: #FCAB40;
-        text-shadow: -2px 0 #7D4B07, 0 2px #7D4B07, 2px 0 #7D4B07, 0 -2px #7D4B07;
-        width: 45%;
+    height: 480px;
+    position: relative;
+    .menu {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        width: 720px;
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
+        .score {
+            color: #FCAB40;
+            text-shadow: -2px 0 #7D4B07, 0 2px #7D4B07, 2px 0 #7D4B07, 0 -2px #7D4B07;
+            width: 45%;
+            display: flex;
+            justify-content: space-between;
+        }
     }
 }

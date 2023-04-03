@@ -129,13 +129,14 @@ class World {
     increasePoints(n) {
         this.points += +n;
     }
+
     updateScore() {
         this.score = this.points;
         this.score += this.elf.points;
         this.level.orcs.forEach((orc) => {
             this.score += orc.points;
         })
-        this.level.orcs.forEach((endboss) => {
+        this.level.endboss.forEach((endboss) => {
             this.score += endboss.points;
         })
     }
@@ -170,7 +171,7 @@ class World {
             this.flipImage(mObj)
         }
         mObj.draw(this.ctx);
-        mObj.drawFrame(this.ctx);
+        // mObj.drawFrame(this.ctx);
         if (mObj.otherDirection) {
             this.flipImageBack(mObj)
         }

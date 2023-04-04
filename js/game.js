@@ -60,6 +60,12 @@ function initLevel() {
     if (level == 2) {
         initLevel2();
     }
+    if (level == 3) {
+        initLevel3();
+    }
+    if (level == 4) {
+        initLevel4();
+    }
 }
 
 function nextLevel() {

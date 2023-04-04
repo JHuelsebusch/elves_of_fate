@@ -37,7 +37,7 @@ class Elf extends MovableObject {
         'img/elf/PNG/3/Elf_03__RUN_008.png',
         'img/elf/PNG/3/Elf_03__RUN_009.png',
     ];
-    walk_sound = new Audio('../audio/running.mp3');
+    walk_sound = new Audio('audio/running.mp3');
     IMAGES_JUMP = [
         'img/elf/PNG/3/Elf_03__JUMP_001.png',
         'img/elf/PNG/3/Elf_03__JUMP_000.png',
@@ -127,12 +127,9 @@ class Elf extends MovableObject {
                 this.objectAnimation(this.IMAGES_JUMP)
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.walk_sound.play();
+                    world.playSound(this.walk_sound);
                     this.objectAnimation(this.IMAGES_WALK);
                 }
-                // if (this.world.keyboard.SPACE) {
-                //     this.objectAnimation(this.IMAGES_ATTACK)
-                // }
             }
             this.world.camera_x = -this.x
 

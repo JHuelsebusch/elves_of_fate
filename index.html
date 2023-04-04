@@ -34,6 +34,7 @@
 <body onload="init()">
     <img class="logo" id="logo" src="img/logo/elves_of_fate.png" alt="">
     <div class="game" id="game">
+        <div class="volumeIcon"><img src="img/icon/volume.png" id="volumeGame" onclick="soundMute()"></div>
         <canvas id="canvas" width="720px" height="480px">
     
         </canvas>
@@ -66,7 +67,7 @@
         <div class="startMenu dNone" id="startBtn">
             <button class="btnSmall" onclick="howToPlay()"><img src="img/icon/joystick-2-48.png" alt=""></button>
             <button class="btn" onclick="startGame()">Start Game!</button>
-            <button class="btnSmall" onclick="soundMute()"><img src="img/icon/volume-up-4-512.png" alt=""></button>
+            <button class="btnSmall" onclick="soundMute()"><img src="img/icon/volume.png" id="volume" alt=""></button>
         </div>
     </div>
     <div class="endscreen dNone" id="endscreen">

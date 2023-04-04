@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let game_audio = new Audio('audio/game.mp3');
 let level = 1;
+let soundMuted = false;
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -15,12 +16,40 @@ function continueGame() {
     document.getElementById('continueBtn').classList.add('dNone');
 }
 
+function soundMute() {
+    let volumeIcon = document.getElementById('volume');
+    let volumeIconGame = document.getElementById('volumeGame');
+    if (soundMuted) {
+        soundMuted = false;
+        volumeIcon.src = 'img/icon/volume.png';
+        volumeIconGame.src = 'img/icon/volume.png';
+        game_audio.muted = false;
+    } else {
+        soundMuted = true;
+        volumeIcon.src = 'img/icon/mute.png';
+        volumeIconGame.src = 'img/icon/mute.png';
+        game_audio.muted = true;
+    }
+    if (world) {
+        setWorldAudio();
+    }
+}
+
+function setWorldAudio() {
+    if (soundMuted) {
+        world.soundMuted = true;
+    } else {
+        world.soundMuted = false;
+    }
+}
+
 function startGame() {
     hideScreens();
     showMobileButtons();
     mobileButtonsPressEvents();
     initLevel();
     world = new World(canvas, keyboard);
+    setWorldAudio();
     runGame();
 }
 
@@ -41,6 +70,15 @@ function nextLevel() {
 function hideScreens() {
     document.getElementById('startscreen').classList.add('dNone');
     document.getElementById('endscreen').classList.add('dNone');
+}
+
+
+function runGame() {
+
+    let gameInterval = setInterval(() => {
+        setHighscore();
+        checkGameOver(gameInterval);
+    }, 1000 / 20);
 }
 
 window.addEventListener("keydown", (e) => {
@@ -164,12 +202,6 @@ function mobileButtonsPressEvents() {
 
 }
 
-function runGame() {
-    let gameInterval = setInterval(() => {
-        setHighscore();
-        checkGameOver(gameInterval);
-    }, 1000 / 20);
-}
 
 function setHighscore() {
     let score = world.score;

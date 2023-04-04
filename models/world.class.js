@@ -12,9 +12,10 @@ class World {
     score = 0;
     lastAttack = 0;
     endboss;
-    flash_sound = new Audio('../audio/flash.mp3');
-    fireball_sound = new Audio('../audio/fireball.mp3');
-    horn_sound = new Audio('../audio/horn.mp3');
+    soundMuted = false;
+    flash_sound = new Audio('audio/flash.mp3');
+    fireball_sound = new Audio('audio/fireball.mp3');
+    horn_sound = new Audio('audio/horn.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -29,8 +30,16 @@ class World {
         this.elf.world = this;
     }
 
+    playSound(sound) {
+        if (!this.soundMuted) {
+            sound.play();
+        }
+    }
+
     run() {
-        this.horn_sound.play();
+        setTimeout(() => {
+            this.playSound(this.horn_sound);
+        }, 100);
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
@@ -58,7 +67,7 @@ class World {
             this.elf.mana -= 5;
             this.manaBar.setPercentage(this.elf.mana);
             this.lastAttack = new Date().getTime();
-            this.flash_sound.play();
+            this.playSound(this.flash_sound);
             setTimeout(() => {
                 this.throwableObject.splice(-1)
             }, 1000);
@@ -71,7 +80,7 @@ class World {
             this.elf.mana -= 30;
             this.manaBar.setPercentage(this.elf.mana);
             this.lastAttack = new Date().getTime();
-            this.fireball_sound.play();
+            this.playSound(this.fireball_sound);
             setTimeout(() => {
                 this.throwableObject.splice(-1)
             }, 1500);

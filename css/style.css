@@ -184,6 +184,42 @@ canvas {
   width: unset;
 }
 
+.mobileControllerLeft {
+  z-index: 10;
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.mobileControllerLeft div {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+.mobileControllerLeft div .btnSmall img {
+  margin-right: unset;
+}
+
+.mobileControllerRight {
+  z-index: 10;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.mobileControllerRight .btnSmall img {
+  margin-right: unset;
+  width: 45px;
+}
+
 @media (max-width: 500px) {
   body {
     font-size: 21px;

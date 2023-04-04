@@ -17,6 +17,8 @@ function continueGame() {
 
 function startGame() {
     hideScreens();
+    showMobileButtons();
+    mobileButtonsPressEvents();
     initLevel();
     world = new World(canvas, keyboard);
     runGame();
@@ -81,6 +83,86 @@ window.addEventListener("keyup", (e) => {
         keyboard.ENTER = false;
     }
 })
+
+// mobile controller 
+function showMobileButtons() {
+    document.getElementById('mobileControllerLeft').classList.remove('dNone');
+    document.getElementById('mobileControllerRight').classList.remove('dNone');
+}
+
+function mobileButtonsPressEvents() {
+    document.getElementById("btnRight").addEventListener('touchstart', (e) => {
+        if (e.cancelable) {
+            e.preventDefault();
+            keyboard.RIGHT = true;
+        }
+
+    });
+    document.getElementById("btnRight").addEventListener('touchend', (e) => {
+        if (e.cancelable) {
+            e.preventDefault();
+            keyboard.RIGHT = false;
+        }
+
+    });
+    document.getElementById("btnLeft").addEventListener('touchstart', (e) => {
+        if (e.cancelable) {
+            e.preventDefault();
+            keyboard.LEFT = true;
+        }
+
+    });
+    document.getElementById("btnLeft").addEventListener('touchend', (e) => {
+        if (e.cancelable) {
+            e.preventDefault();
+            keyboard.LEFT = false;
+        }
+
+    });
+    document.getElementById("btnJump").addEventListener('touchstart', (e) => {
+        if (e.cancelable) {
+            e.preventDefault();
+            keyboard.UP = true;
+        }
+
+    });
+    document.getElementById("btnJump").addEventListener('touchend', (e) => {
+        if (e.cancelable) {
+            e.preventDefault();
+            keyboard.UP = false;
+        }
+
+    });
+    document.getElementById("btnFlash").addEventListener('touchstart', (e) => {
+        if (e.cancelable) {
+            e.preventDefault();
+            keyboard.SPACE = true;
+        }
+
+    });
+    document.getElementById("btnFlash").addEventListener('touchend', (e) => {
+        if (e.cancelable) {
+            e.preventDefault();
+            keyboard.SPACE = false;
+        }
+
+    });
+    document.getElementById("btnFireball").addEventListener('touchstart', (e) => {
+        if (e.cancelable) {
+            e.preventDefault();
+            keyboard.ENTER = true;
+        }
+
+    });
+    document.getElementById("btnFireball").addEventListener('touchend', (e) => {
+        if (e.cancelable) {
+            e.preventDefault();
+            keyboard.ENTER = false;
+        }
+
+    });
+
+}
 
 function runGame() {
     let gameInterval = setInterval(() => {

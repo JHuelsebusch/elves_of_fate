@@ -187,6 +187,43 @@ canvas {
     }
 }
 
+.mobileControllerLeft {
+    z-index: 10;
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    div {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        .btnSmall img {
+            margin-right: unset;
+        }
+    }
+}
+
+.mobileControllerRight {
+    z-index: 10;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    .btnSmall img {
+        margin-right: unset;
+        width: 45px;
+    }
+}
+
+// Responsive
 @media (max-width: 500px) {
     body {
         font-size: 21px;

@@ -37,7 +37,7 @@ class Elf extends MovableObject {
         'img/elf/PNG/3/Elf_03__RUN_008.png',
         'img/elf/PNG/3/Elf_03__RUN_009.png',
     ];
-    walk_sound = new Audio('audio/running.mp3');
+    walk_sound = new Audio('../audio/running.mp3');
     IMAGES_JUMP = [
         'img/elf/PNG/3/Elf_03__JUMP_001.png',
         'img/elf/PNG/3/Elf_03__JUMP_000.png',

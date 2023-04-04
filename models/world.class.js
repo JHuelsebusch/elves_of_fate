@@ -12,7 +12,9 @@ class World {
     score = 0;
     lastAttack = 0;
     endboss;
-
+    flash_sound = new Audio('../audio/flash.mp3');
+    fireball_sound = new Audio('../audio/fireball.mp3');
+    horn_sound = new Audio('../audio/horn.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -25,15 +27,10 @@ class World {
 
     setWorld() {
         this.elf.world = this;
-        //     this.level.orcs.forEach((orc) => {
-        //         orc.world = this;
-        //     })
-        //     this.level.endboss.forEach((endboss) => {
-        //         endboss.world = this;
-        //     })
     }
 
     run() {
+        this.horn_sound.play();
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
@@ -49,6 +46,7 @@ class World {
             this.elf.mana -= 30;
             this.manaBar.setPercentage(this.elf.mana);
             this.lastAttack = new Date().getTime();
+            this.fireball_sound.play();
             setTimeout(() => {
                 this.throwableObject.splice(-1)
             }, 1500);
@@ -59,6 +57,7 @@ class World {
             this.elf.mana -= 5;
             this.manaBar.setPercentage(this.elf.mana);
             this.lastAttack = new Date().getTime();
+            this.flash_sound.play();
             setTimeout(() => {
                 this.throwableObject.splice(-1)
             }, 1000);

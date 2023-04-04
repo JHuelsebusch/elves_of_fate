@@ -1,9 +1,21 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let game_audio = new Audio('../audio/game.mp3');
 
 function init() {
     canvas = document.getElementById('canvas');
+
+
+
+
+}
+
+function continueGame() {
+    game_audio.play();
+    document.getElementById('gameDescription').classList.remove('dNone');
+    document.getElementById('startBtn').classList.remove('dNone');
+    document.getElementById('continueBtn').classList.add('dNone');
 }
 
 function startGame() {
@@ -98,13 +110,40 @@ function checkGameOver(gameInterval) {
         setTimeout(() => {
             document.getElementById('endscreen').classList.remove('dNone');
             document.getElementById('endscreenHeadline').innerHTML = 'Game<br>over';
-        }, 1000);
+        }, 2000);
     }
     if (world.endbossEnergy == 0) {
         clearInterval(gameInterval);
         setTimeout(() => {
             document.getElementById('endscreen').classList.remove('dNone');
-            document.getElementById('endscreenHeadline').innerHTML = `Victory`;
-        }, 1000);
+            document.getElementById('endscreenHeadline').innerHTML = `Victory<br><br>`;
+        }, 2000);
     }
+}
+
+function howToPlay() {
+    document.getElementById('gameDescription').innerHTML = createHowToPlay();
+}
+
+function createHowToPlay() {
+    return `
+    <div class="howToPlay">
+        <div>
+            <img src="img/weapons/sword.png" class="rotateRight">Walk Right: D
+        </div>
+        <div>
+            <img src="img/weapons/sword.png" class="rotateLeft">Walk Left: A
+        </div>
+        <div>
+            <img src="img/weapons/sword.png" alt="">Jump: W
+        </div>
+    </div>
+    <div class="howToPlay">
+        <div>
+            <img src="img/flash/flash06.png" alt="">Flash (Requires 5 Mana): Space
+        </div>
+        <div>
+            <img src="img/FIREBALL/22.png" alt="">Fireball (Requires 30 Mana): Enter
+        </div>
+    </div>`
 }

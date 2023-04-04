@@ -43,8 +43,42 @@ canvas {
   background-color: #226699;
 }
 
+.btnSmall {
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
+  background-color: #55ACEE;
+  border: 2px solid #226699;
+  color: #FCAB40;
+  text-shadow: -2px 0 #7D4B07, 0 2px #7D4B07, 2px 0 #7D4B07, 0 -2px #7D4B07;
+  font-family: Adigiana;
+  font-size: 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnSmall img {
+  width: 30px;
+}
+
+.btnSmall:hover {
+  background-color: #226699;
+}
+
 .logo {
   width: 200px;
+}
+
+.rotateRight {
+  transform: rotate(90deg);
+  margin-right: 20px;
+}
+
+.rotateLeft {
+  transform: rotate(270deg);
+  margin-right: 20px;
 }
 
 .game {
@@ -86,6 +120,30 @@ canvas {
 .startscreen .gameDescription {
   margin: 40px;
   text-align: center;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.startscreen .gameDescription .howToPlay {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.startscreen .gameDescription .howToPlay div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+.startscreen .gameDescription .howToPlay div img {
+  height: 50px;
+}
+.startscreen .startMenu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
 }
 
 .endscreen {

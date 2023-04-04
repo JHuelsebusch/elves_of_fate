@@ -10,7 +10,7 @@ class Endboss extends MovableObject {
         left: 250
     };
 
-    energy = 60;
+    energy = 100;
     damage = 5;
 
     IMAGES_WALK = [

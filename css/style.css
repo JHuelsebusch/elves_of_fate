@@ -5,6 +5,7 @@
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
   box-sizing: border-box;
   font-family: Adigiana;
   font-size: 30px;
@@ -80,6 +81,11 @@ canvas {
 .rotateLeft {
   transform: rotate(270deg);
   margin-right: 20px;
+}
+
+.imgSmall {
+  height: 30px !important;
+  margin-right: unset !important;
 }
 
 .game {
@@ -185,11 +191,11 @@ canvas {
 }
 
 .mobileControllerLeft {
+  display: none;
   z-index: 10;
   position: absolute;
   left: 5px;
   bottom: 5px;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -205,11 +211,11 @@ canvas {
 }
 
 .mobileControllerRight {
+  display: none;
   z-index: 10;
   position: absolute;
   right: 5px;
   bottom: 5px;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -226,6 +232,17 @@ canvas {
   }
   .startscreen .logo {
     width: 300px;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .mobileControllerLeft {
+    display: flex;
+  }
+  .mobileControllerRight {
+    display: flex;
+  }
+  .menu {
+    justify-content: center !important;
   }
 }
 @media only screen and (max-width: 720px) {
@@ -253,9 +270,6 @@ canvas {
   }
   .game canvas {
     height: 100vh;
-  }
-  .game .menu {
-    justify-content: center;
   }
   .endscreen div {
     height: 100vh;

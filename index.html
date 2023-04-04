@@ -32,8 +32,8 @@
 </head>
 
 <body onload="init()">
-    <img class="logo" id="logo" src="./img/logo/elves_of_fate.png" alt="">
-    <div class="game">
+    <img class="logo" id="logo" src="img/logo/elves_of_fate.png" alt="">
+    <div class="game" id="game">
         <canvas id="canvas" width="720px" height="480px">
     
         </canvas>
@@ -42,6 +42,19 @@
                 <span>Highscore: </span>
                 <span id="score"> 0000000</span>
             </div>
+        </div>
+        <div class="mobileControllerLeft dNone" id="mobileControllerLeft">
+            <div>
+                <button class="btnSmall" id="btnJump"><img src="img/icon/arrow-141-64.png" alt=""></button>
+            </div>
+            <div>
+                <button class="btnSmall" id="btnLeft"><img src="img/icon/arrow-141-64.png" class="rotateLeft" alt=""></button>
+                <button class="btnSmall" id="btnRight"><img src="img/icon/arrow-141-64.png" class="rotateRight" alt=""></button>
+            </div>
+        </div>
+        <div class="mobileControllerRight dNone" id="mobileControllerRight">
+            <button class="btnSmall" id="btnFireball"><img src="img/FIREBALL/22.png" alt=""></button>
+            <button class="btnSmall" id="btnFlash"><img src="img/flash/flash06.png" alt=""></button>
         </div>
     </div>
     <div class="startscreen" id="startscreen">
@@ -62,19 +75,6 @@
                 over</span>
             <button class="btn" id="startGame" onclick="startGame()">Restart Game!</button>
         </div>
-    </div>
-    <div class="mobileControllerLeft dNone" id="mobileControllerLeft">
-        <div>
-            <button class="btnSmall" id="btnJump"><img src="img/icon/arrow-141-64.png" alt=""></button>
-        </div>
-        <div>
-            <button class="btnSmall" id="btnLeft"><img src="img/icon/arrow-141-64.png" class="rotateLeft" alt=""></button>
-            <button class="btnSmall" id="btnRight"><img src="img/icon/arrow-141-64.png" class="rotateRight" alt=""></button>
-        </div>
-    </div>
-    <div class="mobileControllerRight dNone" id="mobileControllerRight">
-        <button class="btnSmall" id="btnFireball"><img src="img/FIREBALL/22.png" alt=""></button>
-        <button class="btnSmall" id="btnFlash"><img src="img/flash/flash06.png" alt=""></button>
     </div>
 </body>
 

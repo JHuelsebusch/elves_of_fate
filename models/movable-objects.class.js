@@ -82,7 +82,7 @@ class MovableObject extends DrawableObject {
         }, 100);
         setTimeout(() => {
             clearInterval(animationInterval);
-        }, 950);
+        }, 1000);
     }
 
     explosion(images) {

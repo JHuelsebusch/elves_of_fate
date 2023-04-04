@@ -231,13 +231,13 @@ function createHowToPlay() {
     return `
     <div class="howToPlay">
         <div>
-            <img src="img/weapons/sword.png" class="rotateRight">Walk Right: D
+            <img src="img/weapons/sword.png" class="rotateRight">Walk Right: D or<button class="btnSmall" id="btnRight"><img src="img/icon/arrow-141-64.png" class="rotateRight imgSmall" alt=""></button>
         </div>
         <div>
-            <img src="img/weapons/sword.png" class="rotateLeft">Walk Left: A
+            <img src="img/weapons/sword.png" class="rotateLeft">Walk Left: A or<button class="btnSmall" id="btnLeft"><img src="img/icon/arrow-141-64.png" class="rotateLeft imgSmall" alt=""></button>
         </div>
         <div>
-            <img src="img/weapons/sword.png" alt="">Jump: W
+            <img src="img/weapons/sword.png" alt="">Jump: W or<button class="btnSmall" id="btnJump"><img src="img/icon/arrow-141-64.png" class="imgSmall" alt=""></button>
         </div>
     </div>
     <div class="howToPlay">

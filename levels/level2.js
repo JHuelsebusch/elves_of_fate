@@ -1,8 +1,8 @@
-let level1;
+let level2;
 
-function initLevel1() {
+function initLevel2() {
 
-    level1 = new Level(
+    level2 = new Level(
         [
             new Orc(),
             new Orc(),
@@ -13,7 +13,11 @@ function initLevel1() {
             new Orc(),
             new Orc(),
             new Orc(),
+            new Orc(),
+            new Orc()
         ], [
+            new Endboss(),
+            new Endboss(),
             new Endboss()
         ], [
             new BackgroundObject('./img/bg/PNG/game_background_5/layers/battleground.png', -886.33333, 0),
@@ -51,7 +55,14 @@ function initLevel1() {
             new Potion(),
             new Potion(),
             new Potion(),
+            new Potion(),
+            new Potion(),
+            new Potion(),
+            new Potion(),
+            new Potion(),
         ], [
+            new Spellbook(),
+            new Spellbook(),
             new Spellbook(),
             new Spellbook(),
             new Spellbook(),

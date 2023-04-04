@@ -2,13 +2,10 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let game_audio = new Audio('audio/game.mp3');
+let level = 1;
 
 function init() {
     canvas = document.getElementById('canvas');
-
-
-
-
 }
 
 function continueGame() {
@@ -23,6 +20,20 @@ function startGame() {
     initLevel();
     world = new World(canvas, keyboard);
     runGame();
+}
+
+function initLevel() {
+    if (level == 1) {
+        initLevel1();
+    }
+    if (level == 2) {
+        initLevel2();
+    }
+}
+
+function nextLevel() {
+    level++;
+    startGame();
 }
 
 function hideScreens() {
@@ -109,14 +120,23 @@ function checkGameOver(gameInterval) {
         clearInterval(gameInterval);
         setTimeout(() => {
             document.getElementById('endscreen').classList.remove('dNone');
-            document.getElementById('endscreenHeadline').innerHTML = 'Game<br>over';
+            document.getElementById('endscreen').innerHTML = `
+            <div>
+                <span id="endscreenHeadline">Game<br>
+                    over</span>
+                <button class="btn" id="startGame" onclick="startGame()">Restart Game!</button>
+            </div>`;
         }, 2000);
     }
     if (world.endbossEnergy == 0) {
         clearInterval(gameInterval);
         setTimeout(() => {
             document.getElementById('endscreen').classList.remove('dNone');
-            document.getElementById('endscreenHeadline').innerHTML = `Victory<br><br>`;
+            document.getElementById('endscreen').innerHTML = `
+            <div>
+                <span id="endscreenHeadline">Victory<br><br></span>
+                <button class="btn" id="startGame" onclick="nextLevel()">Next Level!</button>
+            </div>`;
         }, 2000);
     }
 }

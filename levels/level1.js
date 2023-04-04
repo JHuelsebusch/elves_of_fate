@@ -1,8 +1,8 @@
-let level1;
+// let currentlevel;
 
 function initLevel1() {
 
-    level1 = new Level(
+    currentlevel = new Level(
         [
             new Orc(),
             new Orc(),

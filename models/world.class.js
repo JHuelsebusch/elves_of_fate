@@ -1,6 +1,6 @@
 class World {
     elf = new Elf()
-    level = level1;
+    level = currentlevel;
     ctx;
     canvas;
     keyboard;

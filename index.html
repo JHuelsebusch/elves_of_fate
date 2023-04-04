@@ -31,13 +31,12 @@
 </head>
 
 <body onload="init()">
-    <img class="logo" src="./img/logo/elves_of_fate.png" alt="">
+    <img class="logo" id="logo" src="./img/logo/elves_of_fate.png" alt="">
     <div class="game">
         <canvas id="canvas" width="720px" height="480px">
     
         </canvas>
         <div class="menu">
-            <div></div>
             <div class="score">
                 <span>Highscore: </span>
                 <span id="score"> 0000000</span>
@@ -51,9 +50,9 @@
             <span>A horn sounds in the distance. The orcs are on the attack!<br>As the last remaining fighter of the village, it's up to you!<br>You must face the orcs and defend your village.<br> <br>Are you ready to face your destiny?</span>
         </div>
         <div class="startMenu dNone" id="startBtn">
-            <button class="btnSmall" onclick="howToPlay()"><img src="./img/icon/joystick-2-48.png" alt=""></button>
+            <button class="btnSmall" onclick="howToPlay()"><img src="img/icon/joystick-2-48.png" alt=""></button>
             <button class="btn" onclick="startGame()">Start Game!</button>
-            <button class="btnSmall" onclick="startGame()"><img src="./img/icon/settings-4-48.png" alt=""></button>
+            <button class="btnSmall" onclick="soundMute()"><img src="img/icon/volume-up-4-512.png" alt=""></button>
         </div>
     </div>
     <div class="endscreen dNone" id="endscreen">

@@ -15,12 +15,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 25px;
 }
 
 canvas {
     background-color: black;
     border-radius: 20px;
+    // display: block;
     // box-shadow: 5px 5px 10px 5px #66462D, -9px 5px 10px 5px #66462D, -7px -5px 10px 5px #66462D, 12px -5px 10px 5px #66462D, 12px 10px 10px 7px #7D4B07, -10px 10px 10px 7px #7D4B07, -10px -7px 15px 1px #7D4B07, 10px 10px 5px 5px rgba(252, 171, 64, 0);
 }
 
@@ -87,6 +89,8 @@ canvas {
     width: 720px;
     height: 480px;
     position: relative;
+    display: flex;
+    justify-content: center;
     .menu {
         position: absolute;
         bottom: 5px;
@@ -94,7 +98,7 @@ canvas {
         width: 720px;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-end;
         .score {
             color: #FCAB40;
             text-shadow: -2px 0 #7D4B07, 0 2px #7D4B07, 2px 0 #7D4B07, 0 -2px #7D4B07;
@@ -121,7 +125,7 @@ canvas {
     .gameDescription {
         margin: 40px;
         text-align: center;
-        height: 200px;
+        min-height: 200px;
         display: flex;
         flex-direction: row;
         gap: 20px;
@@ -179,6 +183,61 @@ canvas {
             position: absolute;
             bottom: -55px;
             width: unset;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        font-size: 21px;
+    }
+    .startscreen {
+        .logo {
+            width: 300px;
+        }
+    }
+}
+
+// Smartphone
+@media only screen and (max-width:720px) {
+    .game {
+        width: 100%;
+        canvas {
+            width: 100%;
+        }
+        .menu {
+            width: 100%;
+        }
+    }
+    .endscreen {
+        div {
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (max-height:620px) {
+    .logo {
+        display: none;
+    }
+}
+
+@media only screen and (max-height:480px) {
+    .game {
+        height: 100vh;
+        canvas {
+            height: 100vh;
+        }
+        .menu {
+            justify-content: center;
+        }
+    }
+    .endscreen {
+        div {
+            height: 100vh;
+            .btn {
+                bottom: 5px;
+            }
         }
     }
 }

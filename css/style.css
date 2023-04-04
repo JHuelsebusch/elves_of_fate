@@ -14,6 +14,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 25px;
 }
 
@@ -85,6 +86,8 @@ canvas {
   width: 720px;
   height: 480px;
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 .game .menu {
   position: absolute;
@@ -93,7 +96,7 @@ canvas {
   width: 720px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 .game .menu .score {
   color: #FCAB40;
@@ -120,7 +123,7 @@ canvas {
 .startscreen .gameDescription {
   margin: 40px;
   text-align: center;
-  height: 200px;
+  min-height: 200px;
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -179,4 +182,49 @@ canvas {
   position: absolute;
   bottom: -55px;
   width: unset;
+}
+
+@media (max-width: 500px) {
+  body {
+    font-size: 21px;
+  }
+  .startscreen .logo {
+    width: 300px;
+  }
+}
+@media only screen and (max-width: 720px) {
+  .game {
+    width: 100%;
+  }
+  .game canvas {
+    width: 100%;
+  }
+  .game .menu {
+    width: 100%;
+  }
+  .endscreen div {
+    width: 100%;
+  }
+}
+@media only screen and (max-height: 620px) {
+  .logo {
+    display: none;
+  }
+}
+@media only screen and (max-height: 480px) {
+  .game {
+    height: 100vh;
+  }
+  .game canvas {
+    height: 100vh;
+  }
+  .game .menu {
+    justify-content: center;
+  }
+  .endscreen div {
+    height: 100vh;
+  }
+  .endscreen div .btn {
+    bottom: 5px;
+  }
 }/*# sourceMappingURL=style.css.map */

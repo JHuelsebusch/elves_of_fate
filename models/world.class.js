@@ -40,17 +40,18 @@ class World {
     }
 
     checkThrowObjects() {
-        if (this.keyboard.ENTER && this.elf.mana > 30 && !this.cooldown()) {
-            let attack = new Fireball(this.elf.x, this.elf.y);
-            this.throwableObject.push(attack);
-            this.elf.mana -= 30;
-            this.manaBar.setPercentage(this.elf.mana);
-            this.lastAttack = new Date().getTime();
-            this.fireball_sound.play();
-            setTimeout(() => {
-                this.throwableObject.splice(-1)
-            }, 1500);
-        }
+        this.checkFlash();
+        this.checkFireball();
+
+    }
+
+    cooldown() {
+        let timePassed = new Date().getTime() - this.lastAttack;
+        timePassed = timePassed / 1000;
+        return timePassed < 0.5;
+    }
+
+    checkFlash() {
         if (this.keyboard.SPACE && this.elf.mana >= 5 && !this.cooldown()) {
             let attack = new Flash(this.elf.x, this.elf.y);
             this.throwableObject.push(attack);
@@ -63,11 +64,18 @@ class World {
             }, 1000);
         }
     }
-
-    cooldown() {
-        let timePassed = new Date().getTime() - this.lastAttack;
-        timePassed = timePassed / 1000;
-        return timePassed < 0.5;
+    checkFireball() {
+        if (this.keyboard.ENTER && this.elf.mana > 30 && !this.cooldown()) {
+            let attack = new Fireball(this.elf.x, this.elf.y);
+            this.throwableObject.push(attack);
+            this.elf.mana -= 30;
+            this.manaBar.setPercentage(this.elf.mana);
+            this.lastAttack = new Date().getTime();
+            this.fireball_sound.play();
+            setTimeout(() => {
+                this.throwableObject.splice(-1)
+            }, 1500);
+        }
     }
 
     checkCollisions() {

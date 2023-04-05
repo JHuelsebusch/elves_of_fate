@@ -1,6 +1,6 @@
 class Elf extends MovableObject {
     y = 30;
-    speed = 30;
+    speed = 20;
 
     offset = {
         top: 93,
@@ -112,7 +112,7 @@ class Elf extends MovableObject {
             if (this.world.keyboard.UP && !this.isAboveGround()) {
                 this.jump();
             }
-        }, 1000 / 10)
+        }, 1000 / 30)
 
         let animationInterval = setInterval(() => {
             this.walk_sound.pause();
@@ -134,7 +134,7 @@ class Elf extends MovableObject {
             }
             this.world.camera_x = -this.x
 
-        }, 1000 / 10)
+        }, 1000 / 30)
     }
 
     collect(mana) {

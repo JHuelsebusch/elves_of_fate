@@ -61,7 +61,7 @@ class World {
     }
 
     checkFlash() {
-        if (this.keyboard.SPACE && this.elf.mana >= 5 && !this.cooldown()) {
+        if (this.keyboard.SPACE && this.elf.mana >= 5 && !this.cooldown() && this.elf.energy > 0) {
             let attack = new Flash(this.elf.x, this.elf.y);
             this.throwableObject.push(attack);
             this.elf.mana -= 5;
@@ -74,7 +74,7 @@ class World {
         }
     }
     checkFireball() {
-        if (this.keyboard.ENTER && this.elf.mana > 30 && !this.cooldown()) {
+        if (this.keyboard.ENTER && this.elf.mana > 30 && !this.cooldown() && this.elf.energy > 0) {
             let attack = new Fireball(this.elf.x, this.elf.y);
             this.throwableObject.push(attack);
             this.elf.mana -= 30;
@@ -171,8 +171,8 @@ class World {
         this.ctx.translate(this.camera_x, 0); // Forwards
 
         this.addObjectsToMap(this.level.backgroundObjects);
-        this.addObjectsToMap(this.level.orcs);
         this.addObjectsToMap(this.level.endboss);
+        this.addObjectsToMap(this.level.orcs);
         this.addObjectsToMap(this.level.spellbooks);
         this.addObjectsToMap(this.level.potions);
         this.addToMap(this.elf);

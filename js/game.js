@@ -11,6 +11,7 @@ function init() {
 
 function continueGame() {
     game_audio.play();
+    game_audio.loop = true;
     document.getElementById('gameDescription').classList.remove('dNone');
     document.getElementById('startBtn').classList.remove('dNone');
     document.getElementById('continueBtn').classList.add('dNone');
@@ -247,50 +248,44 @@ function checkGameOver(gameInterval) {
         clearInterval(gameInterval);
         setTimeout(() => {
             document.getElementById('endscreen').classList.remove('dNone');
-            document.getElementById('endscreen').innerHTML = `
-            <div>
-                <span id="endscreenHeadline">Game<br>
-                    over</span>
-                <button class="btn" id="startGame" onclick="startGame()">Restart Game!</button>
-            </div>`;
+            document.getElementById('endscreen').innerHTML = createGameOver();
         }, 2000);
     }
     if (world.endbossEnergy == 0) {
         clearInterval(gameInterval);
         setTimeout(() => {
             document.getElementById('endscreen').classList.remove('dNone');
-            document.getElementById('endscreen').innerHTML = `
-            <div>
-                <span id="endscreenHeadline">Victory<br><br></span>
-                <button class="btn" id="startGame" onclick="nextLevel()">Next Level!</button>
-            </div>`;
+            document.getElementById('endscreen').innerHTML = createVictory();
         }, 2000);
     }
 }
 
-function howToPlay() {
-    document.getElementById('gameDescription').innerHTML = createHowToPlay();
+function createGameOver() {
+    return `
+    <div>
+        <span id="endscreenHeadline">Game<br>
+          over</span>
+        <button class="btn" id="startGame" onclick="startGame()">Restart Game!</button>
+    </div>`
 }
 
-function createHowToPlay() {
+function createVictory() {
     return `
-    <div class="howToPlay">
-        <div>
-            <img src="img/weapons/sword.png" class="rotateRight">Walk Right: D or<button class="btnSmall" id="btnRight"><img src="img/icon/arrow-141-64.png" class="rotateRight imgSmall" alt=""></button>
-        </div>
-        <div>
-            <img src="img/weapons/sword.png" class="rotateLeft">Walk Left: A or<button class="btnSmall" id="btnLeft"><img src="img/icon/arrow-141-64.png" class="rotateLeft imgSmall" alt=""></button>
-        </div>
-        <div>
-            <img src="img/weapons/sword.png" alt="">Jump: W or<button class="btnSmall" id="btnJump"><img src="img/icon/arrow-141-64.png" class="imgSmall" alt=""></button>
-        </div>
-    </div>
-    <div class="howToPlay">
-        <div>
-            <img src="img/flash/flash06.png" alt="">Flash (Requires 5 Mana): Space
-        </div>
-        <div>
-            <img src="img/FIREBALL/22.png" alt="">Fireball (Requires 30 Mana): Enter
-        </div>
+    <div>
+        <span id="endscreenHeadline">Victory<br><br></span>
+        <button class="btn" id="startGame" onclick="nextLevel()">Next Level!</button>
     </div>`
+}
+
+function howToPlay() {
+    let howToPlayClass = document.getElementById('howToPlay').classList;
+    let gameDescriptionClass = document.getElementById('gameDescription').classList;
+
+    if (howToPlayClass.contains('dNone')) {
+        howToPlayClass.remove('dNone');
+        gameDescriptionClass.add('dNone');
+    } else {
+        howToPlayClass.add('dNone');
+        gameDescriptionClass.remove('dNone');
+    }
 }

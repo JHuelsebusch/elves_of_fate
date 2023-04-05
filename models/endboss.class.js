@@ -67,51 +67,44 @@ class Endboss extends MovableObject {
 
     animate() {
         const animationInterval = setInterval(() => {
-            if (this.isDead()) {
-                this.die();
-                this.increasePoints(25000);
-                clearInterval(animationInterval);
+            let moveInterval = setInterval(() => {
+                this.moveLeft();
+            }, 1000 / 60);
 
-            } else {
+            let animationWalkInterval = setInterval(() => {
+                if (this.isDead()) {
+                    this.die();
+                    this.increasePoints(25000);
+                    clearInterval(moveInterval);
+                    clearInterval(animationWalkInterval);
+                    clearInterval(animationInterval);
+                } else {
+                    this.objectAnimation(this.IMAGES_WALK);
+                }
+            }, 1000 / 10)
 
-                let moveInterval = setInterval(() => {
-                    this.moveLeft();
-                }, 1000 / 60);
+            let attackTimeout = setTimeout(() => {
+                clearInterval(moveInterval);
+                clearInterval(animationWalkInterval);
+                // console.log('Attack')
 
-                let animationWalkInterval = setInterval(() => {
+                let animationAttackInterval = setInterval(() => {
                     if (this.isDead()) {
                         this.die();
                         this.increasePoints(25000);
-                        clearInterval(moveInterval);
-                        clearInterval(animationWalkInterval);
-                        clearInterval(animationInterval);
-                    } else {
-                        this.objectAnimation(this.IMAGES_WALK);
-                    }
-                }, 1000 / 10)
-
-                let attackTimeout = setTimeout(() => {
-                    clearInterval(moveInterval);
-                    clearInterval(animationWalkInterval);
-                    // console.log('Attack')
-
-                    let animationAttackInterval = setInterval(() => {
-                        if (this.isDead()) {
-                            this.die();
-                            this.increasePoints(25000);
-                            clearInterval(animationAttackInterval);
-                            clearInterval(animationInterval);
-
-                        } else {
-                            this.objectAnimation(this.IMAGES_ATTACK);
-                        }
-                    }, 1000 / 20);
-                    let endTimeout = setTimeout(() => {
                         clearInterval(animationAttackInterval);
-                        // console.log('endTimeout');
-                    }, 2000);
-                }, 4000);
-            }
+                        clearInterval(animationInterval);
+
+                    } else {
+                        this.objectAnimation(this.IMAGES_ATTACK);
+                    }
+                }, 1000 / 20);
+                let endTimeout = setTimeout(() => {
+                    clearInterval(animationAttackInterval);
+                    // console.log('endTimeout');
+                }, 2000);
+            }, 4000);
+
         }, 6000);
     }
 }

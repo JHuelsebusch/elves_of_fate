@@ -102,7 +102,7 @@ class Elf extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
+        let movingInterval = setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
             }
@@ -112,14 +112,15 @@ class Elf extends MovableObject {
             if (this.world.keyboard.UP && !this.isAboveGround()) {
                 this.jump();
             }
-        }, 100)
+        }, 1000 / 10)
 
-        const animationInterval = setInterval(() => {
+        let animationInterval = setInterval(() => {
             this.walk_sound.pause();
             this.objectAnimation(this.IMAGES_IDLE);
 
             if (this.isDead()) {
                 clearInterval(animationInterval);
+                clearInterval(movingInterval);
                 this.die();
             } else if (this.isHurt() && this.lastDamage != 0) {
                 this.objectAnimation(this.IMAGES_HURT);
@@ -133,7 +134,7 @@ class Elf extends MovableObject {
             }
             this.world.camera_x = -this.x
 
-        }, 100)
+        }, 1000 / 10)
     }
 
     collect(mana) {

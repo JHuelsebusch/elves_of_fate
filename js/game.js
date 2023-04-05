@@ -66,6 +66,13 @@ function initLevel() {
     if (level == 4) {
         initLevel4();
     }
+    if (level == 5) {
+        initLevel5();
+    }
+    if (level > 5) {
+        level = 1;
+        initLevel();
+    }
 }
 
 function nextLevel() {

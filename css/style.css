@@ -154,6 +154,12 @@ canvas {
   align-items: center;
   gap: 15px;
 }
+.startscreen .gameDescription .howToPlay div .btnSmall {
+  cursor: unset;
+}
+.startscreen .gameDescription .howToPlay div .btnSmall:hover {
+  background-color: #55ACEE;
+}
 .startscreen .gameDescription .howToPlay div img {
   height: 50px;
 }

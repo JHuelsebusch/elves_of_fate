@@ -153,6 +153,12 @@ canvas {
                 flex-direction: row;
                 align-items: center;
                 gap: 15px;
+                .btnSmall {
+                    cursor: unset;
+                }
+                .btnSmall:hover {
+                    background-color: #55ACEE;
+                }
             }
             div img {
                 height: 50px;

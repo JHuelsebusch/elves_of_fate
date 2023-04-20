@@ -18,6 +18,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 25px;
+    position: relative;
 }
 
 canvas {
@@ -244,6 +245,46 @@ canvas {
     }
 }
 
+.copyright {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    z-index: 10;
+    color: #8DCC44;
+    text-shadow: -2px 0 #294213, 0 2px #294213, 2px 0 #294213, 0 -2px #294213;
+    font-size: 16px;
+    p {
+        margin: 0;
+        a {
+            text-decoration: none;
+            color: #8DCC44;
+            text-shadow: -2px 0 #294213, 0 2px #294213, 2px 0 #294213, 0 -2px #294213;
+        }
+    }
+}
+
+.impressum {
+    padding: 0px 100px;
+    overflow: scroll;
+    position: relative;
+    a {
+        color: #FCAB40;
+        text-shadow: -2px 0 #7D4B07, 0 2px #7D4B07, 2px 0 #7D4B07, 0 -2px #7D4B07;
+        text-decoration: none;
+    }
+    .back {
+        position: absolute;
+        top: 70px;
+        right: 100px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        img {
+            height: 30px;
+        }
+    }
+}
+
 // Responsive
 @media (max-width: 500px) {
     body {
@@ -267,6 +308,9 @@ canvas {
     .menu {
         justify-content: center !important;
     }
+    .copyright {
+        right: unset;
+    }
 }
 
 @media only screen and (max-width:720px) {
@@ -289,6 +333,11 @@ canvas {
 @media only screen and (max-height:620px) {
     .logo {
         display: none;
+    }
+    .copyright {
+        bottom: unset;
+        top: 0;
+        z-index: -1;
     }
 }
 
